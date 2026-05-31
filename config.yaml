@@ -13,11 +13,41 @@ competitions:
     placeholder:
       enabled: true
       type: bundesliga
-      season_start: "2026-08-28"
-      season_end: "2027-05-22"
-      winter_break_start: "2026-12-21"
-      winter_break_end: "2027-01-08"
-      matchdays: 34
+      matchday_dates:
+        - "2026-08-29"   # Spieltag 1  (28.–30.08.)
+        - "2026-09-12"   # Spieltag 2  (11.–13.09.)
+        - "2026-09-19"   # Spieltag 3  (18.–20.09.)
+        - "2026-09-26"   # Spieltag 4  (25.–27.09.)
+        - "2026-10-03"   # Spieltag 5  (02.–04.10.)
+        - "2026-10-17"   # Spieltag 6  (16.–18.10.) – nach Länderspielpause
+        - "2026-10-24"   # Spieltag 7  (23.–25.10.)
+        - "2026-10-31"   # Spieltag 8  (30.10.–01.11.)
+        - "2026-11-07"   # Spieltag 9  (06.–08.11.)
+        - "2026-11-21"   # Spieltag 10 (20.–22.11.) – nach Länderspielpause
+        - "2026-11-28"   # Spieltag 11 (27.–29.11.)
+        - "2026-12-05"   # Spieltag 12 (04.–06.12.)
+        - "2026-12-12"   # Spieltag 13 (11.–13.12.)
+        - "2026-12-19"   # Spieltag 14 (18.–20.12.) – letzter vor Winterpause
+        - "2027-01-09"   # Spieltag 15 (08.–10.01.) – Rückrundenstart
+        - "2027-01-16"   # Spieltag 16 (15.–17.01.)
+        - "2027-01-23"   # Spieltag 17 (22.–24.01.)
+        - "2027-01-30"   # Spieltag 18 (29.–31.01.)
+        - "2027-02-06"   # Spieltag 19 (05.–07.02.)
+        - "2027-02-13"   # Spieltag 20 (12.–14.02.)
+        - "2027-02-20"   # Spieltag 21 (19.–21.02.)
+        - "2027-02-27"   # Spieltag 22 (26.–28.02.)
+        - "2027-03-06"   # Spieltag 23 (05.–07.03.) – englischer Spieltag (Mi 03.–04.03.)
+        - "2027-03-13"   # Spieltag 24 (12.–14.03.)
+        - "2027-03-20"   # Spieltag 25 (19.–21.03.)
+        - "2027-04-03"   # Spieltag 26 (02.–04.04.) – nach Länderspielpause
+        - "2027-04-10"   # Spieltag 27 (09.–11.04.)
+        - "2027-04-17"   # Spieltag 28 (16.–18.04.)
+        - "2027-04-24"   # Spieltag 29 (23.–25.04.)
+        - "2027-05-01"   # Spieltag 30 (30.04.–02.05.)
+        - "2027-05-08"   # Spieltag 31 (07.–09.05.)
+        - "2027-05-15"   # Spieltag 32 (14.–16.05.)
+        - "2027-05-19"   # Spieltag 33 (Mi 19.05.) – englischer Spieltag
+        - "2027-05-22"   # Spieltag 34 (22.05.) – letzter Spieltag
 
   - id: dfb_2026
     label: "DFB"

@@ -101,32 +101,20 @@ def is_koeln_eliminated(matches):
 
 def generate_bundesliga_placeholders(placeholder_config):
     events = []
-    start = date.fromisoformat(placeholder_config["season_start"])
-    end = date.fromisoformat(placeholder_config["season_end"])
-    wb_start = date.fromisoformat(placeholder_config["winter_break_start"])
-    wb_end = date.fromisoformat(placeholder_config["winter_break_end"])
-    total = placeholder_config["matchdays"]
+    dates = placeholder_config.get("matchday_dates", [])
 
-    current = start
-    matchday = 1
-    while matchday <= total and current <= end:
-        sat = current - timedelta(days=current.weekday()) + timedelta(days=5)
-        if sat < current:
-            sat += timedelta(weeks=1)
+    for i, d in enumerate(dates):
+        matchday = i + 1
+        matchday_date = date.fromisoformat(d) if isinstance(d, str) else d
 
         events.append({
             "_placeholder": True,
             "_matchday": matchday,
-            "_date": sat,
+            "_date": matchday_date,
             "_label": "BL",
             "_summary": f"BL: Spieltag {matchday} (1. FC Köln)",
             "_description": f"1. Bundesliga 2026/27\n{matchday}. Spieltag\nGenaue Terminierung steht noch aus",
         })
-        matchday += 1
-
-        current = sat + timedelta(weeks=1)
-        if wb_start <= current <= wb_end:
-            current = wb_end + timedelta(days=1)
 
     return events
 
