@@ -1,0 +1,78 @@
+calendar:
+  name: "FC Köln & Fußball-Kalender"
+  timezone: "Europe/Berlin"
+  refresh_interval: "PT1H"
+
+competitions:
+  - id: bl1_2026
+    label: "BL"
+    description: "1. Bundesliga 2026/27"
+    api_shortcut: bl1
+    api_season: 2026
+    filter_teams: ["1. FC Köln"]
+    placeholder:
+      enabled: true
+      type: bundesliga
+      season_start: "2026-08-28"
+      season_end: "2027-05-22"
+      winter_break_start: "2026-12-21"
+      winter_break_end: "2027-01-08"
+      matchdays: 34
+
+  - id: dfb_2026
+    label: "DFB"
+    description: "DFB-Pokal 2026/27"
+    api_shortcut: dfb
+    api_season: 2026
+    filter_teams: ["1. FC Köln"]
+    auto_deactivate: true
+    placeholder:
+      enabled: true
+      type: dfb_pokal
+      rounds:
+        - name: "1. Runde"
+          date: "2026-08-21"
+        - name: "2. Runde"
+          date: "2026-10-27"
+        - name: "Achtelfinale"
+          date: "2026-12-01"
+        - name: "Viertelfinale"
+          date: "2027-02-02"
+        - name: "Halbfinale"
+          date: "2027-04-20"
+        - name: "Finale"
+          date: "2027-05-29"
+
+  - id: wm26
+    label: "WM"
+    description: "WM 2026"
+    api_shortcut: wm26
+    api_season: 2026
+    filter_teams:
+      - "Deutschland"
+      - "Brasilien"
+      - "Argentinien"
+      - "Uruguay"
+      - "Frankreich"
+      - "Spanien"
+      - "England"
+
+stadiums:
+  "1. FC Köln": "RheinEnergieSTADION, Aachener Str. 999, 50933 Köln"
+  "FC Bayern München": "Allianz Arena, München"
+  "Borussia Dortmund": "Signal Iduna Park, Dortmund"
+  "Bayer 04 Leverkusen": "BayArena, Leverkusen"
+  "RB Leipzig": "Red Bull Arena, Leipzig"
+  "Eintracht Frankfurt": "Deutsche Bank Park, Frankfurt"
+  "VfB Stuttgart": "MHPArena, Stuttgart"
+  "VfL Wolfsburg": "Volkswagen Arena, Wolfsburg"
+  "Borussia Mönchengladbach": "Borussia-Park, Mönchengladbach"
+  "SC Freiburg": "Europa-Park Stadion, Freiburg"
+  "1. FC Union Berlin": "Stadion An der Alten Försterei, Berlin"
+  "TSG 1899 Hoffenheim": "PreZero Arena, Sinsheim"
+  "1. FSV Mainz 05": "Mewa Arena, Mainz"
+  "FC Augsburg": "WWK Arena, Augsburg"
+  "SV Werder Bremen": "Wohninvest Weserstadion, Bremen"
+  "1. FC Heidenheim 1846": "Voith-Arena, Heidenheim"
+  "FC St. Pauli": "Millerntor-Stadion, Hamburg"
+  "Holstein Kiel": "Holstein-Stadion, Kiel"
