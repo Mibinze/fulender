@@ -13,18 +13,111 @@ competitions:
     placeholder:
       enabled: true
       type: bundesliga
-      # Nur offiziell bestätigte Termine (DFL Rahmenterminkalender, Nov 2025)
+      # Quellen: DFL Rahmenterminkalender (Nov 2025), Hannover 96, DFB
+      # Legende: verified=true → offiziell bestätigt; verified=false → berechnet aus Rahmenterminkalender
       matchday_dates:
         - date: "2026-08-29"
-          name: "Spieltag 1"        # DFL: 28.–30.08.2026
+          name: "Spieltag 1"
+          verified: true    # DFL: 28.–30.08.2026
+        - date: "2026-09-05"
+          name: "Spieltag 2"
+          verified: false   # Basisplan: wöchentlicher Rhythmus
+        - date: "2026-09-12"
+          name: "Spieltag 3"
+          verified: false
+        - date: "2026-09-19"
+          name: "Spieltag 4"
+          verified: false
+        - date: "2026-10-10"
+          name: "Spieltag 5"
+          verified: false   # nach LSP 1 (26.09. + 03.10. gesperrt; DFL/Hannover96)
+        - date: "2026-10-17"
+          name: "Spieltag 6"
+          verified: false
+        - date: "2026-10-24"
+          name: "Spieltag 7"
+          verified: false
+        - date: "2026-10-31"
+          name: "Spieltag 8"
+          verified: false
+        - date: "2026-11-07"
+          name: "Spieltag 9"
+          verified: false
+        - date: "2026-11-21"
+          name: "Spieltag 10"
+          verified: false   # nach LSP 2 (14.11. gesperrt; DFL)
+        - date: "2026-11-28"
+          name: "Spieltag 11"
+          verified: false
+        - date: "2026-12-05"
+          name: "Spieltag 12"
+          verified: false
+        - date: "2026-12-12"
+          name: "Spieltag 13"
+          verified: false
         - date: "2026-12-19"
-          name: "Spieltag 14"       # DFL: 18.–20.12.2026 (letzter vor Winterpause)
+          name: "Spieltag 14"
+          verified: true    # DFL: 18.–20.12.2026 (letzter vor Winterpause)
         - date: "2027-01-09"
-          name: "Spieltag 15"       # DFL: 08.–10.01.2027 (Rückrundenstart)
+          name: "Spieltag 15"
+          verified: true    # DFL: 08.–10.01.2027 (Rückrundenstart)
         - date: "2027-01-12"
-          name: "Spieltag 16"       # DFL: 12.–13.01.2027 (Englische Woche nach Restart)
+          name: "Spieltag 16"
+          verified: true    # DFL: 12.–13.01.2027 (Englische Woche Di/Mi)
+        - date: "2027-01-16"
+          name: "Spieltag 17"
+          verified: false
+        - date: "2027-01-23"
+          name: "Spieltag 18"
+          verified: false
+        - date: "2027-01-30"
+          name: "Spieltag 19"
+          verified: false
+        - date: "2027-02-06"
+          name: "Spieltag 20"
+          verified: false
+        - date: "2027-02-13"
+          name: "Spieltag 21"
+          verified: false
+        - date: "2027-02-20"
+          name: "Spieltag 22"
+          verified: false
+        - date: "2027-02-27"
+          name: "Spieltag 23"
+          verified: false
+        - date: "2027-03-06"
+          name: "Spieltag 24"
+          verified: false   # Englische Woche 02.–04.03. fällt in diese Woche (Mi)
+        - date: "2027-03-13"
+          name: "Spieltag 25"
+          verified: false
+        - date: "2027-03-20"
+          name: "Spieltag 26"
+          verified: false
+        - date: "2027-04-03"
+          name: "Spieltag 27"
+          verified: false   # nach LSP 3 (27.03. gesperrt; DFL)
+        - date: "2027-04-10"
+          name: "Spieltag 28"
+          verified: false
+        - date: "2027-04-17"
+          name: "Spieltag 29"
+          verified: false
+        - date: "2027-04-24"
+          name: "Spieltag 30"
+          verified: false
+        - date: "2027-05-08"
+          name: "Spieltag 31"
+          verified: false   # 01.05. gesperrt (Maifeiertag; DFL)
+        - date: "2027-05-15"
+          name: "Spieltag 32"
+          verified: false
+        - date: "2027-05-19"
+          name: "Spieltag 33"
+          verified: false   # Englische Woche Mi vor letztem Spieltag
         - date: "2027-05-22"
-          name: "Spieltag 34"       # DFL: 22.05.2027 (letzter Spieltag)
+          name: "Spieltag 34"
+          verified: true    # DFL: 22.05.2027 (letzter Spieltag)
 
   - id: dfb_2026
     label: "DFB"

@@ -10,57 +10,376 @@ BEGIN:VEVENT
 SUMMARY:BL: Spieltag 1 (1. FC Köln)
 DTSTART;VALUE=DATE:20260829
 DTEND;VALUE=DATE:20260830
-DTSTAMP:20260531T200054Z
+DTSTAMP:20260531T201739Z
 UID:placeholder-bl-1@fulender.calendar
-DESCRIPTION:1. Bundesliga 2026/27\nSpieltag 1\nGenaue Terminierung steht n
- och aus
+DESCRIPTION:1. Bundesliga 2026/27\nSpieltag 1\nDatum bestätigt (DFL Rahme
+ nterminkalender)
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:BL: Spieltag 2 (1. FC Köln) [voraussichtlich]
+DTSTART;VALUE=DATE:20260905
+DTEND;VALUE=DATE:20260906
+DTSTAMP:20260531T201739Z
+UID:placeholder-bl-2@fulender.calendar
+DESCRIPTION:1. Bundesliga 2026/27\nSpieltag 2\nVoraussichtliches Datum –
+  berechnet aus DFL-Rahmenterminkalender.\nWird automatisch aktualisiert so
+ bald offizielle Terminierung vorliegt.
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:BL: Spieltag 3 (1. FC Köln) [voraussichtlich]
+DTSTART;VALUE=DATE:20260912
+DTEND;VALUE=DATE:20260913
+DTSTAMP:20260531T201739Z
+UID:placeholder-bl-3@fulender.calendar
+DESCRIPTION:1. Bundesliga 2026/27\nSpieltag 3\nVoraussichtliches Datum –
+  berechnet aus DFL-Rahmenterminkalender.\nWird automatisch aktualisiert so
+ bald offizielle Terminierung vorliegt.
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:BL: Spieltag 4 (1. FC Köln) [voraussichtlich]
+DTSTART;VALUE=DATE:20260919
+DTEND;VALUE=DATE:20260920
+DTSTAMP:20260531T201739Z
+UID:placeholder-bl-4@fulender.calendar
+DESCRIPTION:1. Bundesliga 2026/27\nSpieltag 4\nVoraussichtliches Datum –
+  berechnet aus DFL-Rahmenterminkalender.\nWird automatisch aktualisiert so
+ bald offizielle Terminierung vorliegt.
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:BL: Spieltag 5 (1. FC Köln) [voraussichtlich]
+DTSTART;VALUE=DATE:20261010
+DTEND;VALUE=DATE:20261011
+DTSTAMP:20260531T201739Z
+UID:placeholder-bl-5@fulender.calendar
+DESCRIPTION:1. Bundesliga 2026/27\nSpieltag 5\nVoraussichtliches Datum –
+  berechnet aus DFL-Rahmenterminkalender.\nWird automatisch aktualisiert so
+ bald offizielle Terminierung vorliegt.
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:BL: Spieltag 6 (1. FC Köln) [voraussichtlich]
+DTSTART;VALUE=DATE:20261017
+DTEND;VALUE=DATE:20261018
+DTSTAMP:20260531T201739Z
+UID:placeholder-bl-6@fulender.calendar
+DESCRIPTION:1. Bundesliga 2026/27\nSpieltag 6\nVoraussichtliches Datum –
+  berechnet aus DFL-Rahmenterminkalender.\nWird automatisch aktualisiert so
+ bald offizielle Terminierung vorliegt.
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:BL: Spieltag 7 (1. FC Köln) [voraussichtlich]
+DTSTART;VALUE=DATE:20261024
+DTEND;VALUE=DATE:20261025
+DTSTAMP:20260531T201739Z
+UID:placeholder-bl-7@fulender.calendar
+DESCRIPTION:1. Bundesliga 2026/27\nSpieltag 7\nVoraussichtliches Datum –
+  berechnet aus DFL-Rahmenterminkalender.\nWird automatisch aktualisiert so
+ bald offizielle Terminierung vorliegt.
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:BL: Spieltag 8 (1. FC Köln) [voraussichtlich]
+DTSTART;VALUE=DATE:20261031
+DTEND;VALUE=DATE:20261101
+DTSTAMP:20260531T201739Z
+UID:placeholder-bl-8@fulender.calendar
+DESCRIPTION:1. Bundesliga 2026/27\nSpieltag 8\nVoraussichtliches Datum –
+  berechnet aus DFL-Rahmenterminkalender.\nWird automatisch aktualisiert so
+ bald offizielle Terminierung vorliegt.
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:BL: Spieltag 9 (1. FC Köln) [voraussichtlich]
+DTSTART;VALUE=DATE:20261107
+DTEND;VALUE=DATE:20261108
+DTSTAMP:20260531T201739Z
+UID:placeholder-bl-9@fulender.calendar
+DESCRIPTION:1. Bundesliga 2026/27\nSpieltag 9\nVoraussichtliches Datum –
+  berechnet aus DFL-Rahmenterminkalender.\nWird automatisch aktualisiert so
+ bald offizielle Terminierung vorliegt.
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:BL: Spieltag 10 (1. FC Köln) [voraussichtlich]
+DTSTART;VALUE=DATE:20261121
+DTEND;VALUE=DATE:20261122
+DTSTAMP:20260531T201739Z
+UID:placeholder-bl-10@fulender.calendar
+DESCRIPTION:1. Bundesliga 2026/27\nSpieltag 10\nVoraussichtliches Datum 
+ – berechnet aus DFL-Rahmenterminkalender.\nWird automatisch aktualisiert
+  sobald offizielle Terminierung vorliegt.
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:BL: Spieltag 11 (1. FC Köln) [voraussichtlich]
+DTSTART;VALUE=DATE:20261128
+DTEND;VALUE=DATE:20261129
+DTSTAMP:20260531T201739Z
+UID:placeholder-bl-11@fulender.calendar
+DESCRIPTION:1. Bundesliga 2026/27\nSpieltag 11\nVoraussichtliches Datum 
+ – berechnet aus DFL-Rahmenterminkalender.\nWird automatisch aktualisiert
+  sobald offizielle Terminierung vorliegt.
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:BL: Spieltag 12 (1. FC Köln) [voraussichtlich]
+DTSTART;VALUE=DATE:20261205
+DTEND;VALUE=DATE:20261206
+DTSTAMP:20260531T201739Z
+UID:placeholder-bl-12@fulender.calendar
+DESCRIPTION:1. Bundesliga 2026/27\nSpieltag 12\nVoraussichtliches Datum 
+ – berechnet aus DFL-Rahmenterminkalender.\nWird automatisch aktualisiert
+  sobald offizielle Terminierung vorliegt.
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:BL: Spieltag 13 (1. FC Köln) [voraussichtlich]
+DTSTART;VALUE=DATE:20261212
+DTEND;VALUE=DATE:20261213
+DTSTAMP:20260531T201739Z
+UID:placeholder-bl-13@fulender.calendar
+DESCRIPTION:1. Bundesliga 2026/27\nSpieltag 13\nVoraussichtliches Datum 
+ – berechnet aus DFL-Rahmenterminkalender.\nWird automatisch aktualisiert
+  sobald offizielle Terminierung vorliegt.
 STATUS:TENTATIVE
 END:VEVENT
 BEGIN:VEVENT
 SUMMARY:BL: Spieltag 14 (1. FC Köln)
 DTSTART;VALUE=DATE:20261219
 DTEND;VALUE=DATE:20261220
-DTSTAMP:20260531T200054Z
-UID:placeholder-bl-2@fulender.calendar
-DESCRIPTION:1. Bundesliga 2026/27\nSpieltag 14\nGenaue Terminierung steht 
- noch aus
+DTSTAMP:20260531T201739Z
+UID:placeholder-bl-14@fulender.calendar
+DESCRIPTION:1. Bundesliga 2026/27\nSpieltag 14\nDatum bestätigt (DFL Rahm
+ enterminkalender)
 STATUS:TENTATIVE
 END:VEVENT
 BEGIN:VEVENT
 SUMMARY:BL: Spieltag 15 (1. FC Köln)
 DTSTART;VALUE=DATE:20270109
 DTEND;VALUE=DATE:20270110
-DTSTAMP:20260531T200054Z
-UID:placeholder-bl-3@fulender.calendar
-DESCRIPTION:1. Bundesliga 2026/27\nSpieltag 15\nGenaue Terminierung steht 
- noch aus
+DTSTAMP:20260531T201739Z
+UID:placeholder-bl-15@fulender.calendar
+DESCRIPTION:1. Bundesliga 2026/27\nSpieltag 15\nDatum bestätigt (DFL Rahm
+ enterminkalender)
 STATUS:TENTATIVE
 END:VEVENT
 BEGIN:VEVENT
 SUMMARY:BL: Spieltag 16 (1. FC Köln)
 DTSTART;VALUE=DATE:20270112
 DTEND;VALUE=DATE:20270113
-DTSTAMP:20260531T200054Z
-UID:placeholder-bl-4@fulender.calendar
-DESCRIPTION:1. Bundesliga 2026/27\nSpieltag 16\nGenaue Terminierung steht 
- noch aus
+DTSTAMP:20260531T201739Z
+UID:placeholder-bl-16@fulender.calendar
+DESCRIPTION:1. Bundesliga 2026/27\nSpieltag 16\nDatum bestätigt (DFL Rahm
+ enterminkalender)
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:BL: Spieltag 17 (1. FC Köln) [voraussichtlich]
+DTSTART;VALUE=DATE:20270116
+DTEND;VALUE=DATE:20270117
+DTSTAMP:20260531T201739Z
+UID:placeholder-bl-17@fulender.calendar
+DESCRIPTION:1. Bundesliga 2026/27\nSpieltag 17\nVoraussichtliches Datum 
+ – berechnet aus DFL-Rahmenterminkalender.\nWird automatisch aktualisiert
+  sobald offizielle Terminierung vorliegt.
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:BL: Spieltag 18 (1. FC Köln) [voraussichtlich]
+DTSTART;VALUE=DATE:20270123
+DTEND;VALUE=DATE:20270124
+DTSTAMP:20260531T201739Z
+UID:placeholder-bl-18@fulender.calendar
+DESCRIPTION:1. Bundesliga 2026/27\nSpieltag 18\nVoraussichtliches Datum 
+ – berechnet aus DFL-Rahmenterminkalender.\nWird automatisch aktualisiert
+  sobald offizielle Terminierung vorliegt.
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:BL: Spieltag 19 (1. FC Köln) [voraussichtlich]
+DTSTART;VALUE=DATE:20270130
+DTEND;VALUE=DATE:20270131
+DTSTAMP:20260531T201739Z
+UID:placeholder-bl-19@fulender.calendar
+DESCRIPTION:1. Bundesliga 2026/27\nSpieltag 19\nVoraussichtliches Datum 
+ – berechnet aus DFL-Rahmenterminkalender.\nWird automatisch aktualisiert
+  sobald offizielle Terminierung vorliegt.
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:BL: Spieltag 20 (1. FC Köln) [voraussichtlich]
+DTSTART;VALUE=DATE:20270206
+DTEND;VALUE=DATE:20270207
+DTSTAMP:20260531T201739Z
+UID:placeholder-bl-20@fulender.calendar
+DESCRIPTION:1. Bundesliga 2026/27\nSpieltag 20\nVoraussichtliches Datum 
+ – berechnet aus DFL-Rahmenterminkalender.\nWird automatisch aktualisiert
+  sobald offizielle Terminierung vorliegt.
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:BL: Spieltag 21 (1. FC Köln) [voraussichtlich]
+DTSTART;VALUE=DATE:20270213
+DTEND;VALUE=DATE:20270214
+DTSTAMP:20260531T201739Z
+UID:placeholder-bl-21@fulender.calendar
+DESCRIPTION:1. Bundesliga 2026/27\nSpieltag 21\nVoraussichtliches Datum 
+ – berechnet aus DFL-Rahmenterminkalender.\nWird automatisch aktualisiert
+  sobald offizielle Terminierung vorliegt.
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:BL: Spieltag 22 (1. FC Köln) [voraussichtlich]
+DTSTART;VALUE=DATE:20270220
+DTEND;VALUE=DATE:20270221
+DTSTAMP:20260531T201739Z
+UID:placeholder-bl-22@fulender.calendar
+DESCRIPTION:1. Bundesliga 2026/27\nSpieltag 22\nVoraussichtliches Datum 
+ – berechnet aus DFL-Rahmenterminkalender.\nWird automatisch aktualisiert
+  sobald offizielle Terminierung vorliegt.
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:BL: Spieltag 23 (1. FC Köln) [voraussichtlich]
+DTSTART;VALUE=DATE:20270227
+DTEND;VALUE=DATE:20270228
+DTSTAMP:20260531T201739Z
+UID:placeholder-bl-23@fulender.calendar
+DESCRIPTION:1. Bundesliga 2026/27\nSpieltag 23\nVoraussichtliches Datum 
+ – berechnet aus DFL-Rahmenterminkalender.\nWird automatisch aktualisiert
+  sobald offizielle Terminierung vorliegt.
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:BL: Spieltag 24 (1. FC Köln) [voraussichtlich]
+DTSTART;VALUE=DATE:20270306
+DTEND;VALUE=DATE:20270307
+DTSTAMP:20260531T201739Z
+UID:placeholder-bl-24@fulender.calendar
+DESCRIPTION:1. Bundesliga 2026/27\nSpieltag 24\nVoraussichtliches Datum 
+ – berechnet aus DFL-Rahmenterminkalender.\nWird automatisch aktualisiert
+  sobald offizielle Terminierung vorliegt.
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:BL: Spieltag 25 (1. FC Köln) [voraussichtlich]
+DTSTART;VALUE=DATE:20270313
+DTEND;VALUE=DATE:20270314
+DTSTAMP:20260531T201739Z
+UID:placeholder-bl-25@fulender.calendar
+DESCRIPTION:1. Bundesliga 2026/27\nSpieltag 25\nVoraussichtliches Datum 
+ – berechnet aus DFL-Rahmenterminkalender.\nWird automatisch aktualisiert
+  sobald offizielle Terminierung vorliegt.
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:BL: Spieltag 26 (1. FC Köln) [voraussichtlich]
+DTSTART;VALUE=DATE:20270320
+DTEND;VALUE=DATE:20270321
+DTSTAMP:20260531T201739Z
+UID:placeholder-bl-26@fulender.calendar
+DESCRIPTION:1. Bundesliga 2026/27\nSpieltag 26\nVoraussichtliches Datum 
+ – berechnet aus DFL-Rahmenterminkalender.\nWird automatisch aktualisiert
+  sobald offizielle Terminierung vorliegt.
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:BL: Spieltag 27 (1. FC Köln) [voraussichtlich]
+DTSTART;VALUE=DATE:20270403
+DTEND;VALUE=DATE:20270404
+DTSTAMP:20260531T201739Z
+UID:placeholder-bl-27@fulender.calendar
+DESCRIPTION:1. Bundesliga 2026/27\nSpieltag 27\nVoraussichtliches Datum 
+ – berechnet aus DFL-Rahmenterminkalender.\nWird automatisch aktualisiert
+  sobald offizielle Terminierung vorliegt.
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:BL: Spieltag 28 (1. FC Köln) [voraussichtlich]
+DTSTART;VALUE=DATE:20270410
+DTEND;VALUE=DATE:20270411
+DTSTAMP:20260531T201739Z
+UID:placeholder-bl-28@fulender.calendar
+DESCRIPTION:1. Bundesliga 2026/27\nSpieltag 28\nVoraussichtliches Datum 
+ – berechnet aus DFL-Rahmenterminkalender.\nWird automatisch aktualisiert
+  sobald offizielle Terminierung vorliegt.
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:BL: Spieltag 29 (1. FC Köln) [voraussichtlich]
+DTSTART;VALUE=DATE:20270417
+DTEND;VALUE=DATE:20270418
+DTSTAMP:20260531T201739Z
+UID:placeholder-bl-29@fulender.calendar
+DESCRIPTION:1. Bundesliga 2026/27\nSpieltag 29\nVoraussichtliches Datum 
+ – berechnet aus DFL-Rahmenterminkalender.\nWird automatisch aktualisiert
+  sobald offizielle Terminierung vorliegt.
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:BL: Spieltag 30 (1. FC Köln) [voraussichtlich]
+DTSTART;VALUE=DATE:20270424
+DTEND;VALUE=DATE:20270425
+DTSTAMP:20260531T201739Z
+UID:placeholder-bl-30@fulender.calendar
+DESCRIPTION:1. Bundesliga 2026/27\nSpieltag 30\nVoraussichtliches Datum 
+ – berechnet aus DFL-Rahmenterminkalender.\nWird automatisch aktualisiert
+  sobald offizielle Terminierung vorliegt.
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:BL: Spieltag 31 (1. FC Köln) [voraussichtlich]
+DTSTART;VALUE=DATE:20270508
+DTEND;VALUE=DATE:20270509
+DTSTAMP:20260531T201739Z
+UID:placeholder-bl-31@fulender.calendar
+DESCRIPTION:1. Bundesliga 2026/27\nSpieltag 31\nVoraussichtliches Datum 
+ – berechnet aus DFL-Rahmenterminkalender.\nWird automatisch aktualisiert
+  sobald offizielle Terminierung vorliegt.
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:BL: Spieltag 32 (1. FC Köln) [voraussichtlich]
+DTSTART;VALUE=DATE:20270515
+DTEND;VALUE=DATE:20270516
+DTSTAMP:20260531T201739Z
+UID:placeholder-bl-32@fulender.calendar
+DESCRIPTION:1. Bundesliga 2026/27\nSpieltag 32\nVoraussichtliches Datum 
+ – berechnet aus DFL-Rahmenterminkalender.\nWird automatisch aktualisiert
+  sobald offizielle Terminierung vorliegt.
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:BL: Spieltag 33 (1. FC Köln) [voraussichtlich]
+DTSTART;VALUE=DATE:20270519
+DTEND;VALUE=DATE:20270520
+DTSTAMP:20260531T201739Z
+UID:placeholder-bl-33@fulender.calendar
+DESCRIPTION:1. Bundesliga 2026/27\nSpieltag 33\nVoraussichtliches Datum 
+ – berechnet aus DFL-Rahmenterminkalender.\nWird automatisch aktualisiert
+  sobald offizielle Terminierung vorliegt.
 STATUS:TENTATIVE
 END:VEVENT
 BEGIN:VEVENT
 SUMMARY:BL: Spieltag 34 (1. FC Köln)
 DTSTART;VALUE=DATE:20270522
 DTEND;VALUE=DATE:20270523
-DTSTAMP:20260531T200054Z
-UID:placeholder-bl-5@fulender.calendar
-DESCRIPTION:1. Bundesliga 2026/27\nSpieltag 34\nGenaue Terminierung steht 
- noch aus
+DTSTAMP:20260531T201739Z
+UID:placeholder-bl-34@fulender.calendar
+DESCRIPTION:1. Bundesliga 2026/27\nSpieltag 34\nDatum bestätigt (DFL Rahm
+ enterminkalender)
 STATUS:TENTATIVE
 END:VEVENT
 BEGIN:VEVENT
 SUMMARY:DFB: 1. Runde (1. FC Köln)
 DTSTART;VALUE=DATE:20260821
 DTEND;VALUE=DATE:20260822
-DTSTAMP:20260531T200055Z
+DTSTAMP:20260531T201739Z
 UID:placeholder-dfb-1@fulender.calendar
 DESCRIPTION:DFB-Pokal 2026/27\n1. Runde\nGenaue Terminierung steht noch au
  s
@@ -70,7 +389,7 @@ BEGIN:VEVENT
 SUMMARY:DFB: 2. Runde (1. FC Köln)
 DTSTART;VALUE=DATE:20261027
 DTEND;VALUE=DATE:20261028
-DTSTAMP:20260531T200055Z
+DTSTAMP:20260531T201739Z
 UID:placeholder-dfb-2@fulender.calendar
 DESCRIPTION:DFB-Pokal 2026/27\n2. Runde\nGenaue Terminierung steht noch au
  s
@@ -80,7 +399,7 @@ BEGIN:VEVENT
 SUMMARY:DFB: Achtelfinale (1. FC Köln)
 DTSTART;VALUE=DATE:20261201
 DTEND;VALUE=DATE:20261202
-DTSTAMP:20260531T200055Z
+DTSTAMP:20260531T201739Z
 UID:placeholder-dfb-3@fulender.calendar
 DESCRIPTION:DFB-Pokal 2026/27\nAchtelfinale\nGenaue Terminierung steht noc
  h aus
@@ -90,7 +409,7 @@ BEGIN:VEVENT
 SUMMARY:DFB: Viertelfinale (1. FC Köln)
 DTSTART;VALUE=DATE:20270202
 DTEND;VALUE=DATE:20270203
-DTSTAMP:20260531T200055Z
+DTSTAMP:20260531T201739Z
 UID:placeholder-dfb-4@fulender.calendar
 DESCRIPTION:DFB-Pokal 2026/27\nViertelfinale\nGenaue Terminierung steht no
  ch aus
@@ -100,7 +419,7 @@ BEGIN:VEVENT
 SUMMARY:DFB: Halbfinale (1. FC Köln)
 DTSTART;VALUE=DATE:20270420
 DTEND;VALUE=DATE:20270421
-DTSTAMP:20260531T200055Z
+DTSTAMP:20260531T201739Z
 UID:placeholder-dfb-5@fulender.calendar
 DESCRIPTION:DFB-Pokal 2026/27\nHalbfinale\nGenaue Terminierung steht noch 
  aus
@@ -110,7 +429,7 @@ BEGIN:VEVENT
 SUMMARY:DFB: Finale (1. FC Köln)
 DTSTART;VALUE=DATE:20270529
 DTEND;VALUE=DATE:20270530
-DTSTAMP:20260531T200055Z
+DTSTAMP:20260531T201739Z
 UID:placeholder-dfb-6@fulender.calendar
 DESCRIPTION:DFB-Pokal 2026/27\nFinale\nGenaue Terminierung steht noch aus
 STATUS:TENTATIVE
@@ -119,7 +438,7 @@ BEGIN:VEVENT
 SUMMARY:WM: BRA – MAR
 DTSTART;TZID=Europe/Berlin:20260614T000000
 DTEND;TZID=Europe/Berlin:20260614T020000
-DTSTAMP:20260531T200056Z
+DTSTAMP:20260531T201740Z
 UID:80105@fulender.calendar
 DESCRIPTION:WM 2026\nGruppenphase 1
 STATUS:TENTATIVE
@@ -133,7 +452,7 @@ BEGIN:VEVENT
 SUMMARY:WM: DEU – CUW
 DTSTART;TZID=Europe/Berlin:20260614T190000
 DTEND;TZID=Europe/Berlin:20260614T210000
-DTSTAMP:20260531T200056Z
+DTSTAMP:20260531T201740Z
 UID:80107@fulender.calendar
 DESCRIPTION:WM 2026\nGruppenphase 1
 STATUS:TENTATIVE
@@ -147,7 +466,7 @@ BEGIN:VEVENT
 SUMMARY:WM: ESP – CPV
 DTSTART;TZID=Europe/Berlin:20260615T180000
 DTEND;TZID=Europe/Berlin:20260615T200000
-DTSTAMP:20260531T200056Z
+DTSTAMP:20260531T201740Z
 UID:80111@fulender.calendar
 DESCRIPTION:WM 2026\nGruppenphase 1
 STATUS:TENTATIVE
@@ -161,7 +480,7 @@ BEGIN:VEVENT
 SUMMARY:WM: SAU – URY
 DTSTART;TZID=Europe/Berlin:20260616T000000
 DTEND;TZID=Europe/Berlin:20260616T020000
-DTSTAMP:20260531T200056Z
+DTSTAMP:20260531T201740Z
 UID:80113@fulender.calendar
 DESCRIPTION:WM 2026\nGruppenphase 1
 STATUS:TENTATIVE
@@ -175,7 +494,7 @@ BEGIN:VEVENT
 SUMMARY:WM: FRA – SEN
 DTSTART;TZID=Europe/Berlin:20260616T210000
 DTEND;TZID=Europe/Berlin:20260616T230000
-DTSTAMP:20260531T200056Z
+DTSTAMP:20260531T201740Z
 UID:80116@fulender.calendar
 DESCRIPTION:WM 2026\nGruppenphase 1
 STATUS:TENTATIVE
@@ -189,7 +508,7 @@ BEGIN:VEVENT
 SUMMARY:WM: ARG – DZA
 DTSTART;TZID=Europe/Berlin:20260617T030000
 DTEND;TZID=Europe/Berlin:20260617T050000
-DTSTAMP:20260531T200056Z
+DTSTAMP:20260531T201740Z
 UID:80118@fulender.calendar
 DESCRIPTION:WM 2026\nGruppenphase 1
 STATUS:TENTATIVE
@@ -203,7 +522,7 @@ BEGIN:VEVENT
 SUMMARY:WM: ENG – HRV
 DTSTART;TZID=Europe/Berlin:20260617T220000
 DTEND;TZID=Europe/Berlin:20260618T000000
-DTSTAMP:20260531T200056Z
+DTSTAMP:20260531T201740Z
 UID:80120@fulender.calendar
 DESCRIPTION:WM 2026\nGruppenphase 1
 STATUS:TENTATIVE
@@ -217,7 +536,7 @@ BEGIN:VEVENT
 SUMMARY:WM: BRA – HTI
 DTSTART;TZID=Europe/Berlin:20260620T030000
 DTEND;TZID=Europe/Berlin:20260620T050000
-DTSTAMP:20260531T200056Z
+DTSTAMP:20260531T201740Z
 UID:80131@fulender.calendar
 DESCRIPTION:WM 2026\nGruppenphase 2
 STATUS:TENTATIVE
@@ -231,7 +550,7 @@ BEGIN:VEVENT
 SUMMARY:WM: DEU – CIV
 DTSTART;TZID=Europe/Berlin:20260620T220000
 DTEND;TZID=Europe/Berlin:20260621T000000
-DTSTAMP:20260531T200056Z
+DTSTAMP:20260531T201740Z
 UID:80134@fulender.calendar
 DESCRIPTION:WM 2026\nGruppenphase 2
 STATUS:TENTATIVE
@@ -245,7 +564,7 @@ BEGIN:VEVENT
 SUMMARY:WM: ESP – SAU
 DTSTART;TZID=Europe/Berlin:20260621T180000
 DTEND;TZID=Europe/Berlin:20260621T200000
-DTSTAMP:20260531T200056Z
+DTSTAMP:20260531T201740Z
 UID:80136@fulender.calendar
 DESCRIPTION:WM 2026\nGruppenphase 2
 STATUS:TENTATIVE
@@ -259,7 +578,7 @@ BEGIN:VEVENT
 SUMMARY:WM: URY – CPV
 DTSTART;TZID=Europe/Berlin:20260622T000000
 DTEND;TZID=Europe/Berlin:20260622T020000
-DTSTAMP:20260531T200056Z
+DTSTAMP:20260531T201740Z
 UID:80138@fulender.calendar
 DESCRIPTION:WM 2026\nGruppenphase 2
 STATUS:TENTATIVE
@@ -273,7 +592,7 @@ BEGIN:VEVENT
 SUMMARY:WM: ARG – AUT
 DTSTART;TZID=Europe/Berlin:20260622T190000
 DTEND;TZID=Europe/Berlin:20260622T210000
-DTSTAMP:20260531T200056Z
+DTSTAMP:20260531T201740Z
 UID:80140@fulender.calendar
 DESCRIPTION:WM 2026\nGruppenphase 2
 STATUS:TENTATIVE
@@ -287,7 +606,7 @@ BEGIN:VEVENT
 SUMMARY:WM: FRA – IRQ
 DTSTART;TZID=Europe/Berlin:20260622T230000
 DTEND;TZID=Europe/Berlin:20260623T010000
-DTSTAMP:20260531T200056Z
+DTSTAMP:20260531T201740Z
 UID:80141@fulender.calendar
 DESCRIPTION:WM 2026\nGruppenphase 2
 STATUS:TENTATIVE
@@ -301,7 +620,7 @@ BEGIN:VEVENT
 SUMMARY:WM: ENG – GHA
 DTSTART;TZID=Europe/Berlin:20260623T220000
 DTEND;TZID=Europe/Berlin:20260624T000000
-DTSTAMP:20260531T200056Z
+DTSTAMP:20260531T201740Z
 UID:80145@fulender.calendar
 DESCRIPTION:WM 2026\nGruppenphase 2
 STATUS:TENTATIVE
@@ -315,7 +634,7 @@ BEGIN:VEVENT
 SUMMARY:WM: SCT – BRA
 DTSTART;TZID=Europe/Berlin:20260625T000000
 DTEND;TZID=Europe/Berlin:20260625T020000
-DTSTAMP:20260531T200056Z
+DTSTAMP:20260531T201740Z
 UID:80151@fulender.calendar
 DESCRIPTION:WM 2026\nGruppenphase 3
 STATUS:TENTATIVE
@@ -329,7 +648,7 @@ BEGIN:VEVENT
 SUMMARY:WM: ECU – DEU
 DTSTART;TZID=Europe/Berlin:20260625T220000
 DTEND;TZID=Europe/Berlin:20260626T000000
-DTSTAMP:20260531T200056Z
+DTSTAMP:20260531T201740Z
 UID:80155@fulender.calendar
 DESCRIPTION:WM 2026\nGruppenphase 3
 STATUS:TENTATIVE
@@ -343,7 +662,7 @@ BEGIN:VEVENT
 SUMMARY:WM: NOR – FRA
 DTSTART;TZID=Europe/Berlin:20260626T210000
 DTEND;TZID=Europe/Berlin:20260626T230000
-DTSTAMP:20260531T200056Z
+DTSTAMP:20260531T201740Z
 UID:80160@fulender.calendar
 DESCRIPTION:WM 2026\nGruppenphase 3
 STATUS:TENTATIVE
@@ -357,7 +676,7 @@ BEGIN:VEVENT
 SUMMARY:WM: URY – ESP
 DTSTART;TZID=Europe/Berlin:20260627T020000
 DTEND;TZID=Europe/Berlin:20260627T040000
-DTSTAMP:20260531T200056Z
+DTSTAMP:20260531T201740Z
 UID:80163@fulender.calendar
 DESCRIPTION:WM 2026\nGruppenphase 3
 STATUS:TENTATIVE
@@ -371,7 +690,7 @@ BEGIN:VEVENT
 SUMMARY:WM: PAN – ENG
 DTSTART;TZID=Europe/Berlin:20260627T230000
 DTEND;TZID=Europe/Berlin:20260628T010000
-DTSTAMP:20260531T200056Z
+DTSTAMP:20260531T201740Z
 UID:80166@fulender.calendar
 DESCRIPTION:WM 2026\nGruppenphase 3
 STATUS:TENTATIVE
@@ -385,7 +704,7 @@ BEGIN:VEVENT
 SUMMARY:WM: JOR – ARG
 DTSTART;TZID=Europe/Berlin:20260628T040000
 DTEND;TZID=Europe/Berlin:20260628T060000
-DTSTAMP:20260531T200056Z
+DTSTAMP:20260531T201740Z
 UID:80171@fulender.calendar
 DESCRIPTION:WM 2026\nGruppenphase 3
 STATUS:TENTATIVE

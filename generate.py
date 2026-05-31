@@ -107,17 +107,30 @@ def generate_bundesliga_placeholders(placeholder_config):
         if isinstance(entry, str):
             matchday_date = date.fromisoformat(entry)
             name = f"Spieltag {i + 1}"
+            verified = False
         else:
             matchday_date = date.fromisoformat(entry["date"])
             name = entry.get("name", f"Spieltag {i + 1}")
+            verified = entry.get("verified", False)
+
+        if verified:
+            summary = f"BL: {name} (1. FC Köln)"
+            description = f"1. Bundesliga 2026/27\n{name}\nDatum bestätigt (DFL Rahmenterminkalender)"
+        else:
+            summary = f"BL: {name} (1. FC Köln) [voraussichtlich]"
+            description = (
+                f"1. Bundesliga 2026/27\n{name}\n"
+                f"Voraussichtliches Datum – berechnet aus DFL-Rahmenterminkalender.\n"
+                f"Wird automatisch aktualisiert sobald offizielle Terminierung vorliegt."
+            )
 
         events.append({
             "_placeholder": True,
             "_matchday": i + 1,
             "_date": matchday_date,
             "_label": "BL",
-            "_summary": f"BL: {name} (1. FC Köln)",
-            "_description": f"1. Bundesliga 2026/27\n{name}\nGenaue Terminierung steht noch aus",
+            "_summary": summary,
+            "_description": description,
         })
 
     return events
