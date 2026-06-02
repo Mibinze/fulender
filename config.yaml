@@ -159,7 +159,7 @@ competitions:
 
   - id: wm26_ko
     label: "WM"
-    description: "WM 2026 KO-Runde (ab Viertelfinale)"
+    description: "WM 2026 KO-Runde (komplett)"
     api_shortcut: wm26
     api_season: 2026
     placeholder:
@@ -169,6 +169,34 @@ competitions:
       # automatisch durch echte Spiele ersetzt. Daten werden täglich um 06:00 UTC aktualisiert.
       # Termine sind vorläufig (Finale bestätigt: 19.07.2026).
       rounds:
+        - name: "Runde der letzten 32"
+          dates:
+            - "2026-06-29"
+            - "2026-06-29"
+            - "2026-06-29"
+            - "2026-06-29"
+            - "2026-06-30"
+            - "2026-06-30"
+            - "2026-06-30"
+            - "2026-06-30"
+            - "2026-07-01"
+            - "2026-07-01"
+            - "2026-07-01"
+            - "2026-07-01"
+            - "2026-07-02"
+            - "2026-07-02"
+            - "2026-07-02"
+            - "2026-07-02"
+        - name: "Achtelfinale"
+          dates:
+            - "2026-07-04"
+            - "2026-07-04"
+            - "2026-07-05"
+            - "2026-07-05"
+            - "2026-07-06"
+            - "2026-07-06"
+            - "2026-07-07"
+            - "2026-07-07"
         - name: "Viertelfinale"
           dates:
             - "2026-07-09"
