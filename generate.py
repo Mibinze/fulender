@@ -13,6 +13,8 @@ from icalendar import Calendar, Event, Alarm
 API_BASE = "https://api.openligadb.de/getmatchdata"
 BERLIN = pytz.timezone("Europe/Berlin")
 
+_fetch_cache: dict = {}
+
 
 def load_config(path="config.yaml"):
     with open(path, encoding="utf-8") as f:
@@ -20,18 +22,33 @@ def load_config(path="config.yaml"):
 
 
 def fetch_matches(shortcut, season):
+    key = (shortcut, season)
+    if key in _fetch_cache:
+        return _fetch_cache[key]
     url = f"{API_BASE}/{shortcut}/{season}"
     for attempt in range(3):
         try:
             req = Request(url, headers={"User-Agent": "fulender/1.0"})
             with urlopen(req, timeout=10) as resp:
-                return json.loads(resp.read())
+                result = json.loads(resp.read())
+                _fetch_cache[key] = result
+                return result
         except (URLError, json.JSONDecodeError, TimeoutError) as e:
             print(f"  Versuch {attempt + 1}/3 fehlgeschlagen für {url}: {e}")
             if attempt < 2:
                 time.sleep(2)
     print(f"  WARNUNG: Keine Daten von {url}")
+    _fetch_cache[key] = []
     return []
+
+
+def filter_by_group_names(matches, keywords):
+    result = []
+    for m in matches:
+        gname = m.get("group", {}).get("groupName", "")
+        if any(kw in gname for kw in keywords):
+            result.append(m)
+    return result
 
 
 def filter_matches(matches, comp_config):
@@ -244,7 +261,7 @@ def build_event_from_api(match, comp_config, stadiums):
 
 def build_event_from_placeholder(placeholder):
     d = placeholder["_date"]
-    mid = f"placeholder-{placeholder['_label'].lower()}-{placeholder['_matchday']}"
+    mid = placeholder.get("_uid") or f"placeholder-{placeholder['_label'].lower()}-{placeholder['_matchday']}"
 
     event = Event()
     event.add("uid", f"{mid}@fulender.calendar")
@@ -283,6 +300,55 @@ def main():
         print(f"Verarbeite: {comp['description']} ({comp_id})")
 
         raw_matches = fetch_matches(comp["api_shortcut"], comp["api_season"])
+
+        ph_config = comp.get("placeholder", {})
+        ph_type = ph_config.get("type") if ph_config.get("enabled") else None
+
+        if ph_type == "wm_ko":
+            teams_set = set(comp.get("filter_teams", [])) or None
+            api_count = 0
+            ph_count = 0
+
+            for round_cfg in ph_config["rounds"]:
+                round_name = round_cfg["name"]
+                round_api = filter_by_group_names(raw_matches, [round_name])
+
+                if round_api:
+                    for m in round_api:
+                        t1 = m.get("team1", {}).get("teamName", "")
+                        t2 = m.get("team2", {}).get("teamName", "")
+                        if not teams_set or t1 in teams_set or t2 in teams_set:
+                            event = build_event_from_api(m, comp, stadiums)
+                            uid = str(event.get("uid"))
+                            all_events[uid] = event
+                            api_count += 1
+                else:
+                    dates = round_cfg["dates"]
+                    total = len(dates)
+                    for i, d_str in enumerate(dates):
+                        num = i + 1
+                        label = round_name if total == 1 else f"{round_name} ({num}/{total})"
+                        round_key = round_name.lower().replace(" ", "-")
+                        ph = {
+                            "_placeholder": True,
+                            "_uid": f"placeholder-wm-ko-{round_key}-{num}",
+                            "_matchday": num,
+                            "_date": date.fromisoformat(d_str),
+                            "_label": comp["label"],
+                            "_summary": f"{comp['label']}: {label}",
+                            "_description": (
+                                f"WM 2026\n{label}\n"
+                                "Paarung noch nicht bekannt – wird automatisch aktualisiert sobald die Teams feststehen."
+                            ),
+                        }
+                        event = build_event_from_placeholder(ph)
+                        uid = str(event.get("uid"))
+                        all_events[uid] = event
+                        ph_count += 1
+
+            print(f"  {api_count} Spiele (API) + {ph_count} Platzhalter")
+            continue
+
         filtered = filter_matches(raw_matches, comp)
         print(f"  API: {len(raw_matches)} Spiele geladen, {len(filtered)} nach Filter")
 
@@ -291,10 +357,7 @@ def main():
                 event = build_event_from_api(m, comp, stadiums)
                 uid = str(event.get("uid"))
                 all_events[uid] = event
-        elif comp.get("placeholder", {}).get("enabled"):
-            ph_config = comp["placeholder"]
-            ph_type = ph_config.get("type")
-
+        elif ph_config.get("enabled"):
             if ph_type == "bundesliga":
                 placeholders = generate_bundesliga_placeholders(ph_config)
                 print(f"  Platzhalter: {len(placeholders)} Bundesliga-Spieltage generiert")

@@ -157,6 +157,43 @@ competitions:
       - "Spanien"
       - "England"
 
+  - id: wm26_ko
+    label: "WM"
+    description: "WM 2026 KO-Runde (ab Viertelfinale)"
+    api_shortcut: wm26
+    api_season: 2026
+    filter_teams:
+      - "Deutschland"
+      - "Brasilien"
+      - "Argentinien"
+      - "Uruguay"
+      - "Frankreich"
+      - "Spanien"
+      - "England"
+    placeholder:
+      enabled: true
+      type: wm_ko
+      # Sobald die API Spieldaten für eine Runde liefert, werden die Platzhalter
+      # automatisch durch echte Spiele ersetzt. Daten werden täglich um 06:00 UTC aktualisiert.
+      # Termine sind vorläufig (Finale bestätigt: 19.07.2026).
+      rounds:
+        - name: "Viertelfinale"
+          dates:
+            - "2026-07-09"
+            - "2026-07-09"
+            - "2026-07-10"
+            - "2026-07-10"
+        - name: "Halbfinale"
+          dates:
+            - "2026-07-13"
+            - "2026-07-14"
+        - name: "Spiel um Platz 3"
+          dates:
+            - "2026-07-17"
+        - name: "Finale"
+          dates:
+            - "2026-07-19"
+
 stadiums:
   "1. FC Köln": "RheinEnergieSTADION, Aachener Str. 999, 50933 Köln"
   "FC Bayern München": "Allianz Arena, München"
