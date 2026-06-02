@@ -1,7 +1,7 @@
 calendar:
   name: "FC Köln & Fußball-Kalender"
   timezone: "Europe/Berlin"
-  refresh_interval: "PT1H"
+  refresh_interval: "PT30M"
 
 competitions:
   - id: bl1_2026
