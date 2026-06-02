@@ -305,7 +305,6 @@ def main():
         ph_type = ph_config.get("type") if ph_config.get("enabled") else None
 
         if ph_type == "wm_ko":
-            teams_set = set(comp.get("filter_teams", [])) or None
             api_count = 0
             ph_count = 0
 
@@ -315,13 +314,10 @@ def main():
 
                 if round_api:
                     for m in round_api:
-                        t1 = m.get("team1", {}).get("teamName", "")
-                        t2 = m.get("team2", {}).get("teamName", "")
-                        if not teams_set or t1 in teams_set or t2 in teams_set:
-                            event = build_event_from_api(m, comp, stadiums)
-                            uid = str(event.get("uid"))
-                            all_events[uid] = event
-                            api_count += 1
+                        event = build_event_from_api(m, comp, stadiums)
+                        uid = str(event.get("uid"))
+                        all_events[uid] = event
+                        api_count += 1
                 else:
                     dates = round_cfg["dates"]
                     total = len(dates)

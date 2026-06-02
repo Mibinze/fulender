@@ -162,14 +162,6 @@ competitions:
     description: "WM 2026 KO-Runde (ab Viertelfinale)"
     api_shortcut: wm26
     api_season: 2026
-    filter_teams:
-      - "Deutschland"
-      - "Brasilien"
-      - "Argentinien"
-      - "Uruguay"
-      - "Frankreich"
-      - "Spanien"
-      - "England"
     placeholder:
       enabled: true
       type: wm_ko
