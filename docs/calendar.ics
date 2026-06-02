@@ -10,7 +10,7 @@ BEGIN:VEVENT
 SUMMARY:BL: Spieltag 1 (1. FC Köln)
 DTSTART;VALUE=DATE:20260829
 DTEND;VALUE=DATE:20260830
-DTSTAMP:20260602T103545Z
+DTSTAMP:20260602T103616Z
 UID:placeholder-bl-1@fulender.calendar
 DESCRIPTION:1. Bundesliga 2026/27\nSpieltag 1\nDatum bestätigt (DFL Rahme
  nterminkalender)
@@ -20,7 +20,7 @@ BEGIN:VEVENT
 SUMMARY:BL: Spieltag 2 (1. FC Köln) [voraussichtlich]
 DTSTART;VALUE=DATE:20260905
 DTEND;VALUE=DATE:20260906
-DTSTAMP:20260602T103545Z
+DTSTAMP:20260602T103616Z
 UID:placeholder-bl-2@fulender.calendar
 DESCRIPTION:1. Bundesliga 2026/27\nSpieltag 2\nVoraussichtliches Datum –
   berechnet aus DFL-Rahmenterminkalender.\nWird automatisch aktualisiert so
@@ -31,7 +31,7 @@ BEGIN:VEVENT
 SUMMARY:BL: Spieltag 3 (1. FC Köln) [voraussichtlich]
 DTSTART;VALUE=DATE:20260912
 DTEND;VALUE=DATE:20260913
-DTSTAMP:20260602T103545Z
+DTSTAMP:20260602T103616Z
 UID:placeholder-bl-3@fulender.calendar
 DESCRIPTION:1. Bundesliga 2026/27\nSpieltag 3\nVoraussichtliches Datum –
   berechnet aus DFL-Rahmenterminkalender.\nWird automatisch aktualisiert so
@@ -42,7 +42,7 @@ BEGIN:VEVENT
 SUMMARY:BL: Spieltag 4 (1. FC Köln) [voraussichtlich]
 DTSTART;VALUE=DATE:20260919
 DTEND;VALUE=DATE:20260920
-DTSTAMP:20260602T103545Z
+DTSTAMP:20260602T103616Z
 UID:placeholder-bl-4@fulender.calendar
 DESCRIPTION:1. Bundesliga 2026/27\nSpieltag 4\nVoraussichtliches Datum –
   berechnet aus DFL-Rahmenterminkalender.\nWird automatisch aktualisiert so
@@ -53,7 +53,7 @@ BEGIN:VEVENT
 SUMMARY:BL: Spieltag 5 (1. FC Köln) [voraussichtlich]
 DTSTART;VALUE=DATE:20261010
 DTEND;VALUE=DATE:20261011
-DTSTAMP:20260602T103545Z
+DTSTAMP:20260602T103616Z
 UID:placeholder-bl-5@fulender.calendar
 DESCRIPTION:1. Bundesliga 2026/27\nSpieltag 5\nVoraussichtliches Datum –
   berechnet aus DFL-Rahmenterminkalender.\nWird automatisch aktualisiert so
@@ -64,7 +64,7 @@ BEGIN:VEVENT
 SUMMARY:BL: Spieltag 6 (1. FC Köln) [voraussichtlich]
 DTSTART;VALUE=DATE:20261017
 DTEND;VALUE=DATE:20261018
-DTSTAMP:20260602T103545Z
+DTSTAMP:20260602T103616Z
 UID:placeholder-bl-6@fulender.calendar
 DESCRIPTION:1. Bundesliga 2026/27\nSpieltag 6\nVoraussichtliches Datum –
   berechnet aus DFL-Rahmenterminkalender.\nWird automatisch aktualisiert so
@@ -75,7 +75,7 @@ BEGIN:VEVENT
 SUMMARY:BL: Spieltag 7 (1. FC Köln) [voraussichtlich]
 DTSTART;VALUE=DATE:20261024
 DTEND;VALUE=DATE:20261025
-DTSTAMP:20260602T103545Z
+DTSTAMP:20260602T103616Z
 UID:placeholder-bl-7@fulender.calendar
 DESCRIPTION:1. Bundesliga 2026/27\nSpieltag 7\nVoraussichtliches Datum –
   berechnet aus DFL-Rahmenterminkalender.\nWird automatisch aktualisiert so
@@ -86,7 +86,7 @@ BEGIN:VEVENT
 SUMMARY:BL: Spieltag 8 (1. FC Köln) [voraussichtlich]
 DTSTART;VALUE=DATE:20261031
 DTEND;VALUE=DATE:20261101
-DTSTAMP:20260602T103545Z
+DTSTAMP:20260602T103616Z
 UID:placeholder-bl-8@fulender.calendar
 DESCRIPTION:1. Bundesliga 2026/27\nSpieltag 8\nVoraussichtliches Datum –
   berechnet aus DFL-Rahmenterminkalender.\nWird automatisch aktualisiert so
@@ -97,7 +97,7 @@ BEGIN:VEVENT
 SUMMARY:BL: Spieltag 9 (1. FC Köln) [voraussichtlich]
 DTSTART;VALUE=DATE:20261107
 DTEND;VALUE=DATE:20261108
-DTSTAMP:20260602T103545Z
+DTSTAMP:20260602T103616Z
 UID:placeholder-bl-9@fulender.calendar
 DESCRIPTION:1. Bundesliga 2026/27\nSpieltag 9\nVoraussichtliches Datum –
   berechnet aus DFL-Rahmenterminkalender.\nWird automatisch aktualisiert so
@@ -108,7 +108,7 @@ BEGIN:VEVENT
 SUMMARY:BL: Spieltag 10 (1. FC Köln) [voraussichtlich]
 DTSTART;VALUE=DATE:20261121
 DTEND;VALUE=DATE:20261122
-DTSTAMP:20260602T103545Z
+DTSTAMP:20260602T103616Z
 UID:placeholder-bl-10@fulender.calendar
 DESCRIPTION:1. Bundesliga 2026/27\nSpieltag 10\nVoraussichtliches Datum 
  – berechnet aus DFL-Rahmenterminkalender.\nWird automatisch aktualisiert
@@ -119,7 +119,7 @@ BEGIN:VEVENT
 SUMMARY:BL: Spieltag 11 (1. FC Köln) [voraussichtlich]
 DTSTART;VALUE=DATE:20261128
 DTEND;VALUE=DATE:20261129
-DTSTAMP:20260602T103545Z
+DTSTAMP:20260602T103616Z
 UID:placeholder-bl-11@fulender.calendar
 DESCRIPTION:1. Bundesliga 2026/27\nSpieltag 11\nVoraussichtliches Datum 
  – berechnet aus DFL-Rahmenterminkalender.\nWird automatisch aktualisiert
@@ -130,7 +130,7 @@ BEGIN:VEVENT
 SUMMARY:BL: Spieltag 12 (1. FC Köln) [voraussichtlich]
 DTSTART;VALUE=DATE:20261205
 DTEND;VALUE=DATE:20261206
-DTSTAMP:20260602T103545Z
+DTSTAMP:20260602T103616Z
 UID:placeholder-bl-12@fulender.calendar
 DESCRIPTION:1. Bundesliga 2026/27\nSpieltag 12\nVoraussichtliches Datum 
  – berechnet aus DFL-Rahmenterminkalender.\nWird automatisch aktualisiert
@@ -141,7 +141,7 @@ BEGIN:VEVENT
 SUMMARY:BL: Spieltag 13 (1. FC Köln) [voraussichtlich]
 DTSTART;VALUE=DATE:20261212
 DTEND;VALUE=DATE:20261213
-DTSTAMP:20260602T103545Z
+DTSTAMP:20260602T103616Z
 UID:placeholder-bl-13@fulender.calendar
 DESCRIPTION:1. Bundesliga 2026/27\nSpieltag 13\nVoraussichtliches Datum 
  – berechnet aus DFL-Rahmenterminkalender.\nWird automatisch aktualisiert
@@ -152,7 +152,7 @@ BEGIN:VEVENT
 SUMMARY:BL: Spieltag 14 (1. FC Köln)
 DTSTART;VALUE=DATE:20261219
 DTEND;VALUE=DATE:20261220
-DTSTAMP:20260602T103545Z
+DTSTAMP:20260602T103616Z
 UID:placeholder-bl-14@fulender.calendar
 DESCRIPTION:1. Bundesliga 2026/27\nSpieltag 14\nDatum bestätigt (DFL Rahm
  enterminkalender)
@@ -162,7 +162,7 @@ BEGIN:VEVENT
 SUMMARY:BL: Spieltag 15 (1. FC Köln)
 DTSTART;VALUE=DATE:20270109
 DTEND;VALUE=DATE:20270110
-DTSTAMP:20260602T103545Z
+DTSTAMP:20260602T103616Z
 UID:placeholder-bl-15@fulender.calendar
 DESCRIPTION:1. Bundesliga 2026/27\nSpieltag 15\nDatum bestätigt (DFL Rahm
  enterminkalender)
@@ -172,7 +172,7 @@ BEGIN:VEVENT
 SUMMARY:BL: Spieltag 16 (1. FC Köln)
 DTSTART;VALUE=DATE:20270112
 DTEND;VALUE=DATE:20270113
-DTSTAMP:20260602T103545Z
+DTSTAMP:20260602T103616Z
 UID:placeholder-bl-16@fulender.calendar
 DESCRIPTION:1. Bundesliga 2026/27\nSpieltag 16\nDatum bestätigt (DFL Rahm
  enterminkalender)
@@ -182,7 +182,7 @@ BEGIN:VEVENT
 SUMMARY:BL: Spieltag 17 (1. FC Köln) [voraussichtlich]
 DTSTART;VALUE=DATE:20270116
 DTEND;VALUE=DATE:20270117
-DTSTAMP:20260602T103545Z
+DTSTAMP:20260602T103616Z
 UID:placeholder-bl-17@fulender.calendar
 DESCRIPTION:1. Bundesliga 2026/27\nSpieltag 17\nVoraussichtliches Datum 
  – berechnet aus DFL-Rahmenterminkalender.\nWird automatisch aktualisiert
@@ -193,7 +193,7 @@ BEGIN:VEVENT
 SUMMARY:BL: Spieltag 18 (1. FC Köln) [voraussichtlich]
 DTSTART;VALUE=DATE:20270123
 DTEND;VALUE=DATE:20270124
-DTSTAMP:20260602T103545Z
+DTSTAMP:20260602T103616Z
 UID:placeholder-bl-18@fulender.calendar
 DESCRIPTION:1. Bundesliga 2026/27\nSpieltag 18\nVoraussichtliches Datum 
  – berechnet aus DFL-Rahmenterminkalender.\nWird automatisch aktualisiert
@@ -204,7 +204,7 @@ BEGIN:VEVENT
 SUMMARY:BL: Spieltag 19 (1. FC Köln) [voraussichtlich]
 DTSTART;VALUE=DATE:20270130
 DTEND;VALUE=DATE:20270131
-DTSTAMP:20260602T103545Z
+DTSTAMP:20260602T103616Z
 UID:placeholder-bl-19@fulender.calendar
 DESCRIPTION:1. Bundesliga 2026/27\nSpieltag 19\nVoraussichtliches Datum 
  – berechnet aus DFL-Rahmenterminkalender.\nWird automatisch aktualisiert
@@ -215,7 +215,7 @@ BEGIN:VEVENT
 SUMMARY:BL: Spieltag 20 (1. FC Köln) [voraussichtlich]
 DTSTART;VALUE=DATE:20270206
 DTEND;VALUE=DATE:20270207
-DTSTAMP:20260602T103545Z
+DTSTAMP:20260602T103616Z
 UID:placeholder-bl-20@fulender.calendar
 DESCRIPTION:1. Bundesliga 2026/27\nSpieltag 20\nVoraussichtliches Datum 
  – berechnet aus DFL-Rahmenterminkalender.\nWird automatisch aktualisiert
@@ -226,7 +226,7 @@ BEGIN:VEVENT
 SUMMARY:BL: Spieltag 21 (1. FC Köln) [voraussichtlich]
 DTSTART;VALUE=DATE:20270213
 DTEND;VALUE=DATE:20270214
-DTSTAMP:20260602T103545Z
+DTSTAMP:20260602T103616Z
 UID:placeholder-bl-21@fulender.calendar
 DESCRIPTION:1. Bundesliga 2026/27\nSpieltag 21\nVoraussichtliches Datum 
  – berechnet aus DFL-Rahmenterminkalender.\nWird automatisch aktualisiert
@@ -237,7 +237,7 @@ BEGIN:VEVENT
 SUMMARY:BL: Spieltag 22 (1. FC Köln) [voraussichtlich]
 DTSTART;VALUE=DATE:20270220
 DTEND;VALUE=DATE:20270221
-DTSTAMP:20260602T103545Z
+DTSTAMP:20260602T103616Z
 UID:placeholder-bl-22@fulender.calendar
 DESCRIPTION:1. Bundesliga 2026/27\nSpieltag 22\nVoraussichtliches Datum 
  – berechnet aus DFL-Rahmenterminkalender.\nWird automatisch aktualisiert
@@ -248,7 +248,7 @@ BEGIN:VEVENT
 SUMMARY:BL: Spieltag 23 (1. FC Köln) [voraussichtlich]
 DTSTART;VALUE=DATE:20270227
 DTEND;VALUE=DATE:20270228
-DTSTAMP:20260602T103545Z
+DTSTAMP:20260602T103616Z
 UID:placeholder-bl-23@fulender.calendar
 DESCRIPTION:1. Bundesliga 2026/27\nSpieltag 23\nVoraussichtliches Datum 
  – berechnet aus DFL-Rahmenterminkalender.\nWird automatisch aktualisiert
@@ -259,7 +259,7 @@ BEGIN:VEVENT
 SUMMARY:BL: Spieltag 24 (1. FC Köln) [voraussichtlich]
 DTSTART;VALUE=DATE:20270306
 DTEND;VALUE=DATE:20270307
-DTSTAMP:20260602T103545Z
+DTSTAMP:20260602T103616Z
 UID:placeholder-bl-24@fulender.calendar
 DESCRIPTION:1. Bundesliga 2026/27\nSpieltag 24\nVoraussichtliches Datum 
  – berechnet aus DFL-Rahmenterminkalender.\nWird automatisch aktualisiert
@@ -270,7 +270,7 @@ BEGIN:VEVENT
 SUMMARY:BL: Spieltag 25 (1. FC Köln) [voraussichtlich]
 DTSTART;VALUE=DATE:20270313
 DTEND;VALUE=DATE:20270314
-DTSTAMP:20260602T103545Z
+DTSTAMP:20260602T103616Z
 UID:placeholder-bl-25@fulender.calendar
 DESCRIPTION:1. Bundesliga 2026/27\nSpieltag 25\nVoraussichtliches Datum 
  – berechnet aus DFL-Rahmenterminkalender.\nWird automatisch aktualisiert
@@ -281,7 +281,7 @@ BEGIN:VEVENT
 SUMMARY:BL: Spieltag 26 (1. FC Köln) [voraussichtlich]
 DTSTART;VALUE=DATE:20270320
 DTEND;VALUE=DATE:20270321
-DTSTAMP:20260602T103545Z
+DTSTAMP:20260602T103616Z
 UID:placeholder-bl-26@fulender.calendar
 DESCRIPTION:1. Bundesliga 2026/27\nSpieltag 26\nVoraussichtliches Datum 
  – berechnet aus DFL-Rahmenterminkalender.\nWird automatisch aktualisiert
@@ -292,7 +292,7 @@ BEGIN:VEVENT
 SUMMARY:BL: Spieltag 27 (1. FC Köln) [voraussichtlich]
 DTSTART;VALUE=DATE:20270403
 DTEND;VALUE=DATE:20270404
-DTSTAMP:20260602T103545Z
+DTSTAMP:20260602T103616Z
 UID:placeholder-bl-27@fulender.calendar
 DESCRIPTION:1. Bundesliga 2026/27\nSpieltag 27\nVoraussichtliches Datum 
  – berechnet aus DFL-Rahmenterminkalender.\nWird automatisch aktualisiert
@@ -303,7 +303,7 @@ BEGIN:VEVENT
 SUMMARY:BL: Spieltag 28 (1. FC Köln) [voraussichtlich]
 DTSTART;VALUE=DATE:20270410
 DTEND;VALUE=DATE:20270411
-DTSTAMP:20260602T103545Z
+DTSTAMP:20260602T103616Z
 UID:placeholder-bl-28@fulender.calendar
 DESCRIPTION:1. Bundesliga 2026/27\nSpieltag 28\nVoraussichtliches Datum 
  – berechnet aus DFL-Rahmenterminkalender.\nWird automatisch aktualisiert
@@ -314,7 +314,7 @@ BEGIN:VEVENT
 SUMMARY:BL: Spieltag 29 (1. FC Köln) [voraussichtlich]
 DTSTART;VALUE=DATE:20270417
 DTEND;VALUE=DATE:20270418
-DTSTAMP:20260602T103545Z
+DTSTAMP:20260602T103616Z
 UID:placeholder-bl-29@fulender.calendar
 DESCRIPTION:1. Bundesliga 2026/27\nSpieltag 29\nVoraussichtliches Datum 
  – berechnet aus DFL-Rahmenterminkalender.\nWird automatisch aktualisiert
@@ -325,7 +325,7 @@ BEGIN:VEVENT
 SUMMARY:BL: Spieltag 30 (1. FC Köln) [voraussichtlich]
 DTSTART;VALUE=DATE:20270424
 DTEND;VALUE=DATE:20270425
-DTSTAMP:20260602T103545Z
+DTSTAMP:20260602T103616Z
 UID:placeholder-bl-30@fulender.calendar
 DESCRIPTION:1. Bundesliga 2026/27\nSpieltag 30\nVoraussichtliches Datum 
  – berechnet aus DFL-Rahmenterminkalender.\nWird automatisch aktualisiert
@@ -336,7 +336,7 @@ BEGIN:VEVENT
 SUMMARY:BL: Spieltag 31 (1. FC Köln) [voraussichtlich]
 DTSTART;VALUE=DATE:20270508
 DTEND;VALUE=DATE:20270509
-DTSTAMP:20260602T103545Z
+DTSTAMP:20260602T103616Z
 UID:placeholder-bl-31@fulender.calendar
 DESCRIPTION:1. Bundesliga 2026/27\nSpieltag 31\nVoraussichtliches Datum 
  – berechnet aus DFL-Rahmenterminkalender.\nWird automatisch aktualisiert
@@ -347,7 +347,7 @@ BEGIN:VEVENT
 SUMMARY:BL: Spieltag 32 (1. FC Köln) [voraussichtlich]
 DTSTART;VALUE=DATE:20270515
 DTEND;VALUE=DATE:20270516
-DTSTAMP:20260602T103545Z
+DTSTAMP:20260602T103616Z
 UID:placeholder-bl-32@fulender.calendar
 DESCRIPTION:1. Bundesliga 2026/27\nSpieltag 32\nVoraussichtliches Datum 
  – berechnet aus DFL-Rahmenterminkalender.\nWird automatisch aktualisiert
@@ -358,7 +358,7 @@ BEGIN:VEVENT
 SUMMARY:BL: Spieltag 33 (1. FC Köln) [voraussichtlich]
 DTSTART;VALUE=DATE:20270519
 DTEND;VALUE=DATE:20270520
-DTSTAMP:20260602T103545Z
+DTSTAMP:20260602T103616Z
 UID:placeholder-bl-33@fulender.calendar
 DESCRIPTION:1. Bundesliga 2026/27\nSpieltag 33\nVoraussichtliches Datum 
  – berechnet aus DFL-Rahmenterminkalender.\nWird automatisch aktualisiert
@@ -369,7 +369,7 @@ BEGIN:VEVENT
 SUMMARY:BL: Spieltag 34 (1. FC Köln)
 DTSTART;VALUE=DATE:20270522
 DTEND;VALUE=DATE:20270523
-DTSTAMP:20260602T103545Z
+DTSTAMP:20260602T103616Z
 UID:placeholder-bl-34@fulender.calendar
 DESCRIPTION:1. Bundesliga 2026/27\nSpieltag 34\nDatum bestätigt (DFL Rahm
  enterminkalender)
@@ -379,7 +379,7 @@ BEGIN:VEVENT
 SUMMARY:DFB: 1. Runde (1. FC Köln)
 DTSTART;VALUE=DATE:20260821
 DTEND;VALUE=DATE:20260822
-DTSTAMP:20260602T103549Z
+DTSTAMP:20260602T103621Z
 UID:placeholder-dfb-1@fulender.calendar
 DESCRIPTION:DFB-Pokal 2026/27\n1. Runde\nGenaue Terminierung steht noch au
  s
@@ -389,7 +389,7 @@ BEGIN:VEVENT
 SUMMARY:DFB: 2. Runde (1. FC Köln)
 DTSTART;VALUE=DATE:20261027
 DTEND;VALUE=DATE:20261028
-DTSTAMP:20260602T103549Z
+DTSTAMP:20260602T103621Z
 UID:placeholder-dfb-2@fulender.calendar
 DESCRIPTION:DFB-Pokal 2026/27\n2. Runde\nGenaue Terminierung steht noch au
  s
@@ -399,7 +399,7 @@ BEGIN:VEVENT
 SUMMARY:DFB: Achtelfinale (1. FC Köln)
 DTSTART;VALUE=DATE:20261201
 DTEND;VALUE=DATE:20261202
-DTSTAMP:20260602T103549Z
+DTSTAMP:20260602T103621Z
 UID:placeholder-dfb-3@fulender.calendar
 DESCRIPTION:DFB-Pokal 2026/27\nAchtelfinale\nGenaue Terminierung steht noc
  h aus
@@ -409,7 +409,7 @@ BEGIN:VEVENT
 SUMMARY:DFB: Viertelfinale (1. FC Köln)
 DTSTART;VALUE=DATE:20270202
 DTEND;VALUE=DATE:20270203
-DTSTAMP:20260602T103549Z
+DTSTAMP:20260602T103621Z
 UID:placeholder-dfb-4@fulender.calendar
 DESCRIPTION:DFB-Pokal 2026/27\nViertelfinale\nGenaue Terminierung steht no
  ch aus
@@ -419,7 +419,7 @@ BEGIN:VEVENT
 SUMMARY:DFB: Halbfinale (1. FC Köln)
 DTSTART;VALUE=DATE:20270420
 DTEND;VALUE=DATE:20270421
-DTSTAMP:20260602T103549Z
+DTSTAMP:20260602T103621Z
 UID:placeholder-dfb-5@fulender.calendar
 DESCRIPTION:DFB-Pokal 2026/27\nHalbfinale\nGenaue Terminierung steht noch 
  aus
@@ -429,7 +429,7 @@ BEGIN:VEVENT
 SUMMARY:DFB: Finale (1. FC Köln)
 DTSTART;VALUE=DATE:20270529
 DTEND;VALUE=DATE:20270530
-DTSTAMP:20260602T103549Z
+DTSTAMP:20260602T103621Z
 UID:placeholder-dfb-6@fulender.calendar
 DESCRIPTION:DFB-Pokal 2026/27\nFinale\nGenaue Terminierung steht noch aus
 STATUS:TENTATIVE
@@ -438,7 +438,7 @@ BEGIN:VEVENT
 SUMMARY:WM: Runde der letzten 32 (1/16)
 DTSTART;VALUE=DATE:20260629
 DTEND;VALUE=DATE:20260630
-DTSTAMP:20260602T103553Z
+DTSTAMP:20260602T103625Z
 UID:placeholder-wm-ko-runde-der-letzten-32-1@fulender.calendar
 DESCRIPTION:WM 2026\nRunde der letzten 32 (1/16)\nPaarung noch nicht bekan
  nt – wird automatisch aktualisiert sobald die Teams feststehen.
@@ -448,7 +448,7 @@ BEGIN:VEVENT
 SUMMARY:WM: Runde der letzten 32 (2/16)
 DTSTART;VALUE=DATE:20260629
 DTEND;VALUE=DATE:20260630
-DTSTAMP:20260602T103553Z
+DTSTAMP:20260602T103625Z
 UID:placeholder-wm-ko-runde-der-letzten-32-2@fulender.calendar
 DESCRIPTION:WM 2026\nRunde der letzten 32 (2/16)\nPaarung noch nicht bekan
  nt – wird automatisch aktualisiert sobald die Teams feststehen.
@@ -458,7 +458,7 @@ BEGIN:VEVENT
 SUMMARY:WM: Runde der letzten 32 (3/16)
 DTSTART;VALUE=DATE:20260629
 DTEND;VALUE=DATE:20260630
-DTSTAMP:20260602T103553Z
+DTSTAMP:20260602T103625Z
 UID:placeholder-wm-ko-runde-der-letzten-32-3@fulender.calendar
 DESCRIPTION:WM 2026\nRunde der letzten 32 (3/16)\nPaarung noch nicht bekan
  nt – wird automatisch aktualisiert sobald die Teams feststehen.
@@ -468,7 +468,7 @@ BEGIN:VEVENT
 SUMMARY:WM: Runde der letzten 32 (4/16)
 DTSTART;VALUE=DATE:20260629
 DTEND;VALUE=DATE:20260630
-DTSTAMP:20260602T103553Z
+DTSTAMP:20260602T103625Z
 UID:placeholder-wm-ko-runde-der-letzten-32-4@fulender.calendar
 DESCRIPTION:WM 2026\nRunde der letzten 32 (4/16)\nPaarung noch nicht bekan
  nt – wird automatisch aktualisiert sobald die Teams feststehen.
@@ -478,7 +478,7 @@ BEGIN:VEVENT
 SUMMARY:WM: Runde der letzten 32 (5/16)
 DTSTART;VALUE=DATE:20260630
 DTEND;VALUE=DATE:20260701
-DTSTAMP:20260602T103553Z
+DTSTAMP:20260602T103625Z
 UID:placeholder-wm-ko-runde-der-letzten-32-5@fulender.calendar
 DESCRIPTION:WM 2026\nRunde der letzten 32 (5/16)\nPaarung noch nicht bekan
  nt – wird automatisch aktualisiert sobald die Teams feststehen.
@@ -488,7 +488,7 @@ BEGIN:VEVENT
 SUMMARY:WM: Runde der letzten 32 (6/16)
 DTSTART;VALUE=DATE:20260630
 DTEND;VALUE=DATE:20260701
-DTSTAMP:20260602T103553Z
+DTSTAMP:20260602T103625Z
 UID:placeholder-wm-ko-runde-der-letzten-32-6@fulender.calendar
 DESCRIPTION:WM 2026\nRunde der letzten 32 (6/16)\nPaarung noch nicht bekan
  nt – wird automatisch aktualisiert sobald die Teams feststehen.
@@ -498,7 +498,7 @@ BEGIN:VEVENT
 SUMMARY:WM: Runde der letzten 32 (7/16)
 DTSTART;VALUE=DATE:20260630
 DTEND;VALUE=DATE:20260701
-DTSTAMP:20260602T103553Z
+DTSTAMP:20260602T103625Z
 UID:placeholder-wm-ko-runde-der-letzten-32-7@fulender.calendar
 DESCRIPTION:WM 2026\nRunde der letzten 32 (7/16)\nPaarung noch nicht bekan
  nt – wird automatisch aktualisiert sobald die Teams feststehen.
@@ -508,7 +508,7 @@ BEGIN:VEVENT
 SUMMARY:WM: Runde der letzten 32 (8/16)
 DTSTART;VALUE=DATE:20260630
 DTEND;VALUE=DATE:20260701
-DTSTAMP:20260602T103553Z
+DTSTAMP:20260602T103625Z
 UID:placeholder-wm-ko-runde-der-letzten-32-8@fulender.calendar
 DESCRIPTION:WM 2026\nRunde der letzten 32 (8/16)\nPaarung noch nicht bekan
  nt – wird automatisch aktualisiert sobald die Teams feststehen.
@@ -518,7 +518,7 @@ BEGIN:VEVENT
 SUMMARY:WM: Runde der letzten 32 (9/16)
 DTSTART;VALUE=DATE:20260701
 DTEND;VALUE=DATE:20260702
-DTSTAMP:20260602T103553Z
+DTSTAMP:20260602T103625Z
 UID:placeholder-wm-ko-runde-der-letzten-32-9@fulender.calendar
 DESCRIPTION:WM 2026\nRunde der letzten 32 (9/16)\nPaarung noch nicht bekan
  nt – wird automatisch aktualisiert sobald die Teams feststehen.
@@ -528,7 +528,7 @@ BEGIN:VEVENT
 SUMMARY:WM: Runde der letzten 32 (10/16)
 DTSTART;VALUE=DATE:20260701
 DTEND;VALUE=DATE:20260702
-DTSTAMP:20260602T103553Z
+DTSTAMP:20260602T103625Z
 UID:placeholder-wm-ko-runde-der-letzten-32-10@fulender.calendar
 DESCRIPTION:WM 2026\nRunde der letzten 32 (10/16)\nPaarung noch nicht beka
  nnt – wird automatisch aktualisiert sobald die Teams feststehen.
@@ -538,7 +538,7 @@ BEGIN:VEVENT
 SUMMARY:WM: Runde der letzten 32 (11/16)
 DTSTART;VALUE=DATE:20260701
 DTEND;VALUE=DATE:20260702
-DTSTAMP:20260602T103553Z
+DTSTAMP:20260602T103625Z
 UID:placeholder-wm-ko-runde-der-letzten-32-11@fulender.calendar
 DESCRIPTION:WM 2026\nRunde der letzten 32 (11/16)\nPaarung noch nicht beka
  nnt – wird automatisch aktualisiert sobald die Teams feststehen.
@@ -548,7 +548,7 @@ BEGIN:VEVENT
 SUMMARY:WM: Runde der letzten 32 (12/16)
 DTSTART;VALUE=DATE:20260701
 DTEND;VALUE=DATE:20260702
-DTSTAMP:20260602T103553Z
+DTSTAMP:20260602T103625Z
 UID:placeholder-wm-ko-runde-der-letzten-32-12@fulender.calendar
 DESCRIPTION:WM 2026\nRunde der letzten 32 (12/16)\nPaarung noch nicht beka
  nnt – wird automatisch aktualisiert sobald die Teams feststehen.
@@ -558,7 +558,7 @@ BEGIN:VEVENT
 SUMMARY:WM: Runde der letzten 32 (13/16)
 DTSTART;VALUE=DATE:20260702
 DTEND;VALUE=DATE:20260703
-DTSTAMP:20260602T103553Z
+DTSTAMP:20260602T103625Z
 UID:placeholder-wm-ko-runde-der-letzten-32-13@fulender.calendar
 DESCRIPTION:WM 2026\nRunde der letzten 32 (13/16)\nPaarung noch nicht beka
  nnt – wird automatisch aktualisiert sobald die Teams feststehen.
@@ -568,7 +568,7 @@ BEGIN:VEVENT
 SUMMARY:WM: Runde der letzten 32 (14/16)
 DTSTART;VALUE=DATE:20260702
 DTEND;VALUE=DATE:20260703
-DTSTAMP:20260602T103553Z
+DTSTAMP:20260602T103625Z
 UID:placeholder-wm-ko-runde-der-letzten-32-14@fulender.calendar
 DESCRIPTION:WM 2026\nRunde der letzten 32 (14/16)\nPaarung noch nicht beka
  nnt – wird automatisch aktualisiert sobald die Teams feststehen.
@@ -578,7 +578,7 @@ BEGIN:VEVENT
 SUMMARY:WM: Runde der letzten 32 (15/16)
 DTSTART;VALUE=DATE:20260702
 DTEND;VALUE=DATE:20260703
-DTSTAMP:20260602T103553Z
+DTSTAMP:20260602T103625Z
 UID:placeholder-wm-ko-runde-der-letzten-32-15@fulender.calendar
 DESCRIPTION:WM 2026\nRunde der letzten 32 (15/16)\nPaarung noch nicht beka
  nnt – wird automatisch aktualisiert sobald die Teams feststehen.
@@ -588,7 +588,7 @@ BEGIN:VEVENT
 SUMMARY:WM: Runde der letzten 32 (16/16)
 DTSTART;VALUE=DATE:20260702
 DTEND;VALUE=DATE:20260703
-DTSTAMP:20260602T103553Z
+DTSTAMP:20260602T103625Z
 UID:placeholder-wm-ko-runde-der-letzten-32-16@fulender.calendar
 DESCRIPTION:WM 2026\nRunde der letzten 32 (16/16)\nPaarung noch nicht beka
  nnt – wird automatisch aktualisiert sobald die Teams feststehen.
@@ -598,7 +598,7 @@ BEGIN:VEVENT
 SUMMARY:WM: Achtelfinale (1/8)
 DTSTART;VALUE=DATE:20260704
 DTEND;VALUE=DATE:20260705
-DTSTAMP:20260602T103553Z
+DTSTAMP:20260602T103625Z
 UID:placeholder-wm-ko-achtelfinale-1@fulender.calendar
 DESCRIPTION:WM 2026\nAchtelfinale (1/8)\nPaarung noch nicht bekannt – wi
  rd automatisch aktualisiert sobald die Teams feststehen.
@@ -608,7 +608,7 @@ BEGIN:VEVENT
 SUMMARY:WM: Achtelfinale (2/8)
 DTSTART;VALUE=DATE:20260704
 DTEND;VALUE=DATE:20260705
-DTSTAMP:20260602T103553Z
+DTSTAMP:20260602T103625Z
 UID:placeholder-wm-ko-achtelfinale-2@fulender.calendar
 DESCRIPTION:WM 2026\nAchtelfinale (2/8)\nPaarung noch nicht bekannt – wi
  rd automatisch aktualisiert sobald die Teams feststehen.
@@ -618,7 +618,7 @@ BEGIN:VEVENT
 SUMMARY:WM: Achtelfinale (3/8)
 DTSTART;VALUE=DATE:20260705
 DTEND;VALUE=DATE:20260706
-DTSTAMP:20260602T103553Z
+DTSTAMP:20260602T103625Z
 UID:placeholder-wm-ko-achtelfinale-3@fulender.calendar
 DESCRIPTION:WM 2026\nAchtelfinale (3/8)\nPaarung noch nicht bekannt – wi
  rd automatisch aktualisiert sobald die Teams feststehen.
@@ -628,7 +628,7 @@ BEGIN:VEVENT
 SUMMARY:WM: Achtelfinale (4/8)
 DTSTART;VALUE=DATE:20260705
 DTEND;VALUE=DATE:20260706
-DTSTAMP:20260602T103553Z
+DTSTAMP:20260602T103625Z
 UID:placeholder-wm-ko-achtelfinale-4@fulender.calendar
 DESCRIPTION:WM 2026\nAchtelfinale (4/8)\nPaarung noch nicht bekannt – wi
  rd automatisch aktualisiert sobald die Teams feststehen.
@@ -638,7 +638,7 @@ BEGIN:VEVENT
 SUMMARY:WM: Achtelfinale (5/8)
 DTSTART;VALUE=DATE:20260706
 DTEND;VALUE=DATE:20260707
-DTSTAMP:20260602T103553Z
+DTSTAMP:20260602T103625Z
 UID:placeholder-wm-ko-achtelfinale-5@fulender.calendar
 DESCRIPTION:WM 2026\nAchtelfinale (5/8)\nPaarung noch nicht bekannt – wi
  rd automatisch aktualisiert sobald die Teams feststehen.
@@ -648,7 +648,7 @@ BEGIN:VEVENT
 SUMMARY:WM: Achtelfinale (6/8)
 DTSTART;VALUE=DATE:20260706
 DTEND;VALUE=DATE:20260707
-DTSTAMP:20260602T103553Z
+DTSTAMP:20260602T103625Z
 UID:placeholder-wm-ko-achtelfinale-6@fulender.calendar
 DESCRIPTION:WM 2026\nAchtelfinale (6/8)\nPaarung noch nicht bekannt – wi
  rd automatisch aktualisiert sobald die Teams feststehen.
@@ -658,7 +658,7 @@ BEGIN:VEVENT
 SUMMARY:WM: Achtelfinale (7/8)
 DTSTART;VALUE=DATE:20260707
 DTEND;VALUE=DATE:20260708
-DTSTAMP:20260602T103553Z
+DTSTAMP:20260602T103625Z
 UID:placeholder-wm-ko-achtelfinale-7@fulender.calendar
 DESCRIPTION:WM 2026\nAchtelfinale (7/8)\nPaarung noch nicht bekannt – wi
  rd automatisch aktualisiert sobald die Teams feststehen.
@@ -668,7 +668,7 @@ BEGIN:VEVENT
 SUMMARY:WM: Achtelfinale (8/8)
 DTSTART;VALUE=DATE:20260707
 DTEND;VALUE=DATE:20260708
-DTSTAMP:20260602T103553Z
+DTSTAMP:20260602T103625Z
 UID:placeholder-wm-ko-achtelfinale-8@fulender.calendar
 DESCRIPTION:WM 2026\nAchtelfinale (8/8)\nPaarung noch nicht bekannt – wi
  rd automatisch aktualisiert sobald die Teams feststehen.
@@ -678,7 +678,7 @@ BEGIN:VEVENT
 SUMMARY:WM: Viertelfinale (1/4)
 DTSTART;VALUE=DATE:20260709
 DTEND;VALUE=DATE:20260710
-DTSTAMP:20260602T103553Z
+DTSTAMP:20260602T103625Z
 UID:placeholder-wm-ko-viertelfinale-1@fulender.calendar
 DESCRIPTION:WM 2026\nViertelfinale (1/4)\nPaarung noch nicht bekannt – w
  ird automatisch aktualisiert sobald die Teams feststehen.
@@ -688,7 +688,7 @@ BEGIN:VEVENT
 SUMMARY:WM: Viertelfinale (2/4)
 DTSTART;VALUE=DATE:20260709
 DTEND;VALUE=DATE:20260710
-DTSTAMP:20260602T103553Z
+DTSTAMP:20260602T103625Z
 UID:placeholder-wm-ko-viertelfinale-2@fulender.calendar
 DESCRIPTION:WM 2026\nViertelfinale (2/4)\nPaarung noch nicht bekannt – w
  ird automatisch aktualisiert sobald die Teams feststehen.
@@ -698,7 +698,7 @@ BEGIN:VEVENT
 SUMMARY:WM: Viertelfinale (3/4)
 DTSTART;VALUE=DATE:20260710
 DTEND;VALUE=DATE:20260711
-DTSTAMP:20260602T103553Z
+DTSTAMP:20260602T103625Z
 UID:placeholder-wm-ko-viertelfinale-3@fulender.calendar
 DESCRIPTION:WM 2026\nViertelfinale (3/4)\nPaarung noch nicht bekannt – w
  ird automatisch aktualisiert sobald die Teams feststehen.
@@ -708,7 +708,7 @@ BEGIN:VEVENT
 SUMMARY:WM: Viertelfinale (4/4)
 DTSTART;VALUE=DATE:20260710
 DTEND;VALUE=DATE:20260711
-DTSTAMP:20260602T103553Z
+DTSTAMP:20260602T103625Z
 UID:placeholder-wm-ko-viertelfinale-4@fulender.calendar
 DESCRIPTION:WM 2026\nViertelfinale (4/4)\nPaarung noch nicht bekannt – w
  ird automatisch aktualisiert sobald die Teams feststehen.
@@ -718,7 +718,7 @@ BEGIN:VEVENT
 SUMMARY:WM: Halbfinale (1/2)
 DTSTART;VALUE=DATE:20260713
 DTEND;VALUE=DATE:20260714
-DTSTAMP:20260602T103553Z
+DTSTAMP:20260602T103625Z
 UID:placeholder-wm-ko-halbfinale-1@fulender.calendar
 DESCRIPTION:WM 2026\nHalbfinale (1/2)\nPaarung noch nicht bekannt – wird
   automatisch aktualisiert sobald die Teams feststehen.
@@ -728,7 +728,7 @@ BEGIN:VEVENT
 SUMMARY:WM: Halbfinale (2/2)
 DTSTART;VALUE=DATE:20260714
 DTEND;VALUE=DATE:20260715
-DTSTAMP:20260602T103553Z
+DTSTAMP:20260602T103625Z
 UID:placeholder-wm-ko-halbfinale-2@fulender.calendar
 DESCRIPTION:WM 2026\nHalbfinale (2/2)\nPaarung noch nicht bekannt – wird
   automatisch aktualisiert sobald die Teams feststehen.
@@ -738,7 +738,7 @@ BEGIN:VEVENT
 SUMMARY:WM: Spiel um Platz 3
 DTSTART;VALUE=DATE:20260717
 DTEND;VALUE=DATE:20260718
-DTSTAMP:20260602T103553Z
+DTSTAMP:20260602T103625Z
 UID:placeholder-wm-ko-spiel-um-platz-3-1@fulender.calendar
 DESCRIPTION:WM 2026\nSpiel um Platz 3\nPaarung noch nicht bekannt – wird
   automatisch aktualisiert sobald die Teams feststehen.
@@ -748,7 +748,7 @@ BEGIN:VEVENT
 SUMMARY:WM: Finale
 DTSTART;VALUE=DATE:20260719
 DTEND;VALUE=DATE:20260720
-DTSTAMP:20260602T103553Z
+DTSTAMP:20260602T103625Z
 UID:placeholder-wm-ko-finale-1@fulender.calendar
 DESCRIPTION:WM 2026\nFinale\nPaarung noch nicht bekannt – wird automatis
  ch aktualisiert sobald die Teams feststehen.
