@@ -38,4 +38,5 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add docs/calendar.ics
           git diff --staged --quiet || git commit -m "chore: regenerate calendar [skip ci]"
+          git pull --rebase origin main
           git push
