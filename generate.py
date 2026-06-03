@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 import json
+import re
 import time
 from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
@@ -13,7 +14,36 @@ from icalendar import Calendar, Event, Alarm
 API_BASE = "https://api.openligadb.de/getmatchdata"
 BERLIN = pytz.timezone("Europe/Berlin")
 
+_MAX_RESPONSE_BYTES = 10 * 1024 * 1024  # 10 MB
+
 _fetch_cache: dict = {}
+
+_SHORTCUT_RE   = re.compile(r'^[a-z0-9_]+$')
+_SEASON_RE     = re.compile(r'^\d{4}$')
+_ICS_UNSAFE_RE = re.compile(r'[\x00-\x08\x0b\x0c\x0e-\x1f\x7f]')
+
+
+def _validate_api_params(shortcut: str, season) -> None:
+    s, y = str(shortcut), str(season)
+    if not _SHORTCUT_RE.match(s):
+        raise ValueError(f"Invalid api_shortcut: {s!r}")
+    if not _SEASON_RE.match(y):
+        raise ValueError(f"Invalid api_season: {y!r}")
+
+
+def _sanitize_ics(value: str) -> str:
+    if not isinstance(value, str):
+        value = str(value)
+    return _ICS_UNSAFE_RE.sub('', value)
+
+
+def _validate_match_list(data) -> list:
+    if not isinstance(data, list):
+        raise ValueError(f"Expected list from API, got {type(data).__name__}")
+    for i, item in enumerate(data):
+        if not isinstance(item, dict):
+            raise ValueError(f"Match at index {i} is not an object")
+    return data
 
 
 def load_config(path="config.yaml"):
@@ -23,6 +53,7 @@ def load_config(path="config.yaml"):
 
 def fetch_matches(shortcut, season):
     key = (shortcut, season)
+    _validate_api_params(shortcut, season)
     if key in _fetch_cache:
         return _fetch_cache[key]
     url = f"{API_BASE}/{shortcut}/{season}"
@@ -30,14 +61,17 @@ def fetch_matches(shortcut, season):
         try:
             req = Request(url, headers={"User-Agent": "fulender/1.0"})
             with urlopen(req, timeout=10) as resp:
-                result = json.loads(resp.read())
+                data = resp.read(_MAX_RESPONSE_BYTES)
+                if len(data) == _MAX_RESPONSE_BYTES:
+                    raise ValueError("API response exceeds size limit")
+                result = _validate_match_list(json.loads(data))
                 _fetch_cache[key] = result
                 return result
-        except (URLError, json.JSONDecodeError, TimeoutError) as e:
-            print(f"  Versuch {attempt + 1}/3 fehlgeschlagen für {url}: {e}")
+        except (URLError, json.JSONDecodeError, TimeoutError, ValueError) as e:
+            print(f"  Versuch {attempt + 1}/3 fehlgeschlagen für {shortcut}/{season}: {e}")
             if attempt < 2:
                 time.sleep(2)
-    print(f"  WARNUNG: Keine Daten von {url}")
+    print(f"  WARNUNG: Keine Daten für {shortcut}/{season}")
     _fetch_cache[key] = []
     return []
 
@@ -191,12 +225,12 @@ def parse_utc(dt_str):
 def resolve_location(match, comp_config, stadiums):
     loc = match.get("location")
     if loc and isinstance(loc, dict):
-        parts = [loc.get("locationStadium", ""), loc.get("locationCity", "")]
+        parts = [_sanitize_ics(loc.get("locationStadium", "")), _sanitize_ics(loc.get("locationCity", ""))]
         resolved = ", ".join(p for p in parts if p)
         if resolved:
             return resolved
     elif loc and isinstance(loc, str):
-        return loc
+        return _sanitize_ics(loc)
 
     if comp_config.get("id", "").startswith("wm"):
         return None
@@ -218,8 +252,8 @@ def build_event_from_api(match, comp_config, stadiums):
     t2 = match.get("team2", {})
     label = comp_config["label"]
 
-    t1_name = t1.get("shortName") or t1.get("teamName", "?")
-    t2_name = t2.get("shortName") or t2.get("teamName", "?")
+    t1_name = _sanitize_ics(t1.get("shortName") or t1.get("teamName", "?"))
+    t2_name = _sanitize_ics(t2.get("shortName") or t2.get("teamName", "?"))
     summary = f"{label}: {t1_name} – {t2_name}"
 
     dt_utc = parse_utc(match["matchDateTimeUTC"])
@@ -232,13 +266,13 @@ def build_event_from_api(match, comp_config, stadiums):
     event.add("dtend", dt_local + timedelta(hours=2))
     event.add("summary", summary)
 
-    group_name = match.get("group", {}).get("groupName", "")
+    group_name = _sanitize_ics(match.get("group", {}).get("groupName", ""))
     desc = f"{comp_config['description']}\n{group_name}"
     event.add("description", desc)
 
     location = resolve_location(match, comp_config, stadiums)
     if location:
-        event.add("location", location)
+        event.add("location", _sanitize_ics(location))
 
     status = "CONFIRMED" if match.get("matchIsFinished") else "TENTATIVE"
     event.add("status", status)
@@ -388,7 +422,7 @@ def main():
 
     cal = build_calendar(list(all_events.values()), config)
 
-    output = Path("docs/calendar.ics")
+    output = Path(__file__).resolve().parent / "docs" / "calendar.ics"
     output.parent.mkdir(exist_ok=True)
     output.write_bytes(cal.to_ical())
     print(f"\n{len(all_events)} Events geschrieben nach {output}")
