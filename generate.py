@@ -311,36 +311,39 @@ def main():
             for round_cfg in ph_config["rounds"]:
                 round_name = round_cfg["name"]
                 round_api = filter_by_group_names(raw_matches, [round_name])
+                dates = round_cfg["dates"]
+                total = len(dates)
 
-                if round_api:
-                    for m in round_api:
-                        event = build_event_from_api(m, comp, stadiums)
-                        uid = str(event.get("uid"))
-                        all_events[uid] = event
-                        api_count += 1
-                else:
-                    dates = round_cfg["dates"]
-                    total = len(dates)
-                    for i, d_str in enumerate(dates):
-                        num = i + 1
-                        label = round_name if total == 1 else f"{round_name} ({num}/{total})"
-                        round_key = round_name.lower().replace(" ", "-")
-                        ph = {
-                            "_placeholder": True,
-                            "_uid": f"placeholder-wm-ko-{round_key}-{num}",
-                            "_matchday": num,
-                            "_date": date.fromisoformat(d_str),
-                            "_label": comp["label"],
-                            "_summary": f"{comp['label']}: {label}",
-                            "_description": (
-                                f"WM 2026\n{label}\n"
-                                "Paarung noch nicht bekannt – wird automatisch aktualisiert sobald die Teams feststehen."
-                            ),
-                        }
-                        event = build_event_from_placeholder(ph)
-                        uid = str(event.get("uid"))
-                        all_events[uid] = event
-                        ph_count += 1
+                for m in round_api:
+                    event = build_event_from_api(m, comp, stadiums)
+                    uid = str(event.get("uid"))
+                    all_events[uid] = event
+                    api_count += 1
+
+                # Nur so viele Platzhalter anlegen, wie noch unbekannte Paarungen
+                # offen sind. Sobald die API eine Paarung liefert, entfällt
+                # dafür genau ein Ganztags-Platzhalter.
+                remaining = total - len(round_api)
+                round_key = round_name.lower().replace(" ", "-")
+                for i in range(remaining):
+                    num = i + 1
+                    label = round_name if total == 1 else f"{round_name} ({num}/{total})"
+                    ph = {
+                        "_placeholder": True,
+                        "_uid": f"placeholder-wm-ko-{round_key}-{num}",
+                        "_matchday": num,
+                        "_date": date.fromisoformat(dates[i]),
+                        "_label": comp["label"],
+                        "_summary": f"{comp['label']}: {label}",
+                        "_description": (
+                            f"WM 2026\n{label}\n"
+                            "Paarung noch nicht bekannt – wird automatisch aktualisiert sobald die Teams feststehen."
+                        ),
+                    }
+                    event = build_event_from_placeholder(ph)
+                    uid = str(event.get("uid"))
+                    all_events[uid] = event
+                    ph_count += 1
 
             print(f"  {api_count} Spiele (API) + {ph_count} Platzhalter")
             continue
