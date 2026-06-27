@@ -169,7 +169,7 @@ competitions:
       # automatisch durch echte Spiele ersetzt. Daten werden täglich um 06:00 UTC aktualisiert.
       # Termine sind vorläufig (Finale bestätigt: 19.07.2026).
       rounds:
-        - name: "Runde der letzten 32"
+        - name: "Sechzehntelfinale"
           dates:
             - "2026-06-29"
             - "2026-06-29"
