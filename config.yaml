@@ -132,6 +132,10 @@ competitions:
       rounds:
         - name: "1. Runde"
           date: "2026-08-21"
+          # Offizieller Termin: 24.08.2026, 18:00 MESZ (= 16:00 UTC)
+          # Entfernen sobald OpenLigaDB das korrekte Datum liefert
+          # (erkennbar daran, dass API-Datum ≠ 2026-08-21)
+          confirmed_datetime: "2026-08-24T16:00:00Z"
         - name: "2. Runde"
           date: "2026-10-27"
         - name: "Achtelfinale"
