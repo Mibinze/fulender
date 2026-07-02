@@ -199,8 +199,19 @@ def generate_dfb_events(ph_config, filtered_matches, comp, stadiums, eliminated,
     """
     3-Phasen-Logik pro DFB-Runde:
       Phase 1 – kein API-Match: Mehrtages-Blocker (Teams unbekannt)
-      Phase 2 – Paarung bekannt, Zeit Platzhalter: Blocker mit Paarung
-      Phase 3 – exakte Anstoßzeit bekannt: präzises Event
+      Phase 2 – Paarung bekannt, Zeit ist Platzhalter: Blocker mit Paarung
+      Phase 3 – exakte Anstoßzeit bestätigt: präzises Event
+
+    Phase-3-Bedingung (UND-Verknüpfung, alle müssen gelten):
+      a) API-Zeit ist nicht Mitternacht UTC
+      b) API-Datum weicht vom Konfig-Platzhalterdatum ab (sonst hat OpenLigaDB
+         vermutlich das Rundendatum als provisorische Zeit eingetragen)
+      c) Kein confirmed_datetime im Config (das übersteuert dann API-Datum)
+
+    confirmed_datetime im Config: Wenn das echte Datum bekannt ist, aber die API
+    noch falsches Datum liefert, kann hier die korrekte UTC-Zeit eingetragen werden.
+    Sobald die API das korrekte Datum liefert (≠ Konfig-Platzhalterdatum), kann
+    confirmed_datetime wieder entfernt werden.
     """
     matches_by_round = {}
     for m in filtered_matches:
@@ -214,19 +225,35 @@ def generate_dfb_events(ph_config, filtered_matches, comp, stadiums, eliminated,
 
         round_date = date.fromisoformat(r["date"])
         round_name = r["name"]
-        # Blocker-Fenster: 4 Tage für 1. Runde (Fr–Mo), sonst 3 Tage (Di–Do)
+        confirmed_dt_str = r.get("confirmed_datetime")
         window = r.get("window_days", 4 if round_date.weekday() == 4 else 3)
         d_start = round_date
         d_end = round_date + timedelta(days=window)
 
         match = matches_by_round.get(round_name)
 
-        if match and not is_time_placeholder(match):
-            # Phase 3: präzises Event
-            events.append(build_event_from_api(match, comp, stadiums))
+        # Phase-3-Auswertung
+        use_phase3 = False
+        phase3_match = None
+        if match and confirmed_dt_str:
+            # Config-Override: Teams aus API, Datum aus Config (API-Datum ignorieren)
+            use_phase3 = True
+            phase3_match = {**match, "matchDateTimeUTC": confirmed_dt_str}
+        elif match and not is_time_placeholder(match):
+            # Prüfen ob API-Datum vom Konfig-Platzhalter abweicht
+            try:
+                api_date = parse_utc(match["matchDateTimeUTC"]).date()
+                if api_date != round_date:
+                    use_phase3 = True
+                    phase3_match = match
+            except (ValueError, KeyError):
+                pass  # Malformed date → Phase 2
+
+        if use_phase3:
+            events.append(build_event_from_api(phase3_match, comp, stadiums))
         else:
             if match:
-                # Phase 2: Paarung bekannt, Zeit offen
+                # Phase 2: Paarung bekannt, Zeit noch Platzhalter
                 t1 = match.get("team1", {}).get("shortName") or match.get("team1", {}).get("teamName", "?")
                 t2 = match.get("team2", {}).get("shortName") or match.get("team2", {}).get("teamName", "?")
                 summary = f"DFB: {round_name}: {t1} – {t2}"
