@@ -116,61 +116,140 @@ def is_koeln_eliminated(matches):
     return False, last_finished.get("group", {}).get("groupOrderID", 0)
 
 
-def generate_bundesliga_placeholders(placeholder_config):
-    events = []
-    entries = placeholder_config.get("matchday_dates", [])
+def is_time_placeholder(match):
+    """True wenn die API noch keine bestätigte Anstoßzeit hat (Mitternacht UTC als Platzhalter)."""
+    dt_str = match.get("matchDateTimeUTC", "")
+    return not dt_str or dt_str.endswith("T00:00:00Z")
 
+
+def generate_bundesliga_events(ph_config, filtered_matches, comp, stadiums):
+    """
+    3-Phasen-Logik pro Spieltag:
+      Phase 1 – kein API-Match: Mehrtages-Blocker Fr–Mo (Teams unbekannt)
+      Phase 2 – Teams bekannt, Zeit noch Platzhalter: Mehrtages-Blocker mit Paarung
+      Phase 3 – exakte Anstoßzeit bekannt: präzises Event (ersetzt den Blocker)
+    """
+    entries = ph_config.get("matchday_dates", [])
+
+    matches_by_day = {}
+    for m in filtered_matches:
+        md = m.get("group", {}).get("groupOrderID")
+        if md is not None:
+            matches_by_day[md] = m
+
+    events = []
     for i, entry in enumerate(entries):
+        matchday_num = i + 1
         if isinstance(entry, str):
-            matchday_date = date.fromisoformat(entry)
-            name = f"Spieltag {i + 1}"
+            anchor = date.fromisoformat(entry)
+            name = f"Spieltag {matchday_num}"
             verified = False
         else:
-            matchday_date = date.fromisoformat(entry["date"])
-            name = entry.get("name", f"Spieltag {i + 1}")
+            anchor = date.fromisoformat(entry["date"])
+            name = entry.get("name", f"Spieltag {matchday_num}")
             verified = entry.get("verified", False)
 
-        if verified:
-            summary = f"BL: {name} (1. FC Köln)"
-            description = f"1. Bundesliga 2026/27\n{name}\nDatum bestätigt (DFL Rahmenterminkalender)"
-        else:
-            summary = f"BL: {name} (1. FC Köln) [voraussichtlich]"
-            description = (
-                f"1. Bundesliga 2026/27\n{name}\n"
-                f"Voraussichtliches Datum – berechnet aus DFL-Rahmenterminkalender.\n"
-                f"Wird automatisch aktualisiert sobald offizielle Terminierung vorliegt."
-            )
+        # Anchor = Samstag des Spieltags → Blocker-Fenster Fr–Mo (4 Tage)
+        d_start = anchor - timedelta(days=1)   # Freitag
+        d_end = anchor + timedelta(days=3)     # Dienstag (exklusiv) → zeigt Fr+Sa+So+Mo
 
-        events.append({
-            "_placeholder": True,
-            "_matchday": i + 1,
-            "_date": matchday_date,
-            "_label": "BL",
-            "_summary": summary,
-            "_description": description,
-        })
+        match = matches_by_day.get(matchday_num)
+
+        if match and not is_time_placeholder(match):
+            # Phase 3: exakte Zeit bekannt → präzises Event
+            events.append(build_event_from_api(match, comp, stadiums))
+        else:
+            if match:
+                # Phase 2: Paarung bekannt, Zeit noch offen
+                t1 = match.get("team1", {}).get("shortName") or match.get("team1", {}).get("teamName", "?")
+                t2 = match.get("team2", {}).get("shortName") or match.get("team2", {}).get("teamName", "?")
+                summary = f"BL: {name}: {t1} – {t2}"
+                desc = (
+                    f"1. Bundesliga 2026/27\n{name}\n"
+                    "Paarung bekannt – Anstoßzeit noch nicht terminiert.\n"
+                    "Wird automatisch aktualisiert sobald die genaue Zeit feststeht."
+                )
+            elif verified:
+                # Phase 1, Datum bestätigt
+                summary = f"BL: {name} (1. FC Köln)"
+                desc = f"1. Bundesliga 2026/27\n{name}\nDatum bestätigt (DFL Rahmenterminkalender)"
+            else:
+                # Phase 1, Datum vorläufig
+                summary = f"BL: {name} (1. FC Köln) [voraussichtlich]"
+                desc = (
+                    f"1. Bundesliga 2026/27\n{name}\n"
+                    "Voraussichtliches Datum – berechnet aus DFL-Rahmenterminkalender.\n"
+                    "Wird automatisch aktualisiert sobald offizielle Terminierung vorliegt."
+                )
+            ph = {
+                "_uid": f"placeholder-bl-{matchday_num}",
+                "_matchday": matchday_num,
+                "_date_start": d_start,
+                "_date_end": d_end,
+                "_label": "BL",
+                "_summary": summary,
+                "_description": desc,
+            }
+            events.append(build_event_from_placeholder(ph))
 
     return events
 
 
-def generate_dfb_placeholders(placeholder_config, eliminated, last_round):
-    events = []
-    for r in placeholder_config["rounds"]:
-        round_date = date.fromisoformat(r["date"])
-        round_name = r["name"]
+def generate_dfb_events(ph_config, filtered_matches, comp, stadiums, eliminated, last_round):
+    """
+    3-Phasen-Logik pro DFB-Runde:
+      Phase 1 – kein API-Match: Mehrtages-Blocker (Teams unbekannt)
+      Phase 2 – Paarung bekannt, Zeit Platzhalter: Blocker mit Paarung
+      Phase 3 – exakte Anstoßzeit bekannt: präzises Event
+    """
+    matches_by_round = {}
+    for m in filtered_matches:
+        gname = m.get("group", {}).get("groupName", "")
+        matches_by_round[gname] = m
 
-        round_order = placeholder_config["rounds"].index(r) + 1
+    events = []
+    for round_order, r in enumerate(ph_config["rounds"], start=1):
         if eliminated and round_order > last_round:
             break
 
-        events.append({
-            "_placeholder": True,
-            "_matchday": round_order,
-            "_date": round_date,
-            "_label": "DFB",
-            "_summary": f"DFB: {round_name} (1. FC Köln)",
-            "_description": f"DFB-Pokal 2026/27\n{round_name}\nGenaue Terminierung steht noch aus",
-        })
+        round_date = date.fromisoformat(r["date"])
+        round_name = r["name"]
+        # Blocker-Fenster: 4 Tage für 1. Runde (Fr–Mo), sonst 3 Tage (Di–Do)
+        window = r.get("window_days", 4 if round_date.weekday() == 4 else 3)
+        d_start = round_date
+        d_end = round_date + timedelta(days=window)
+
+        match = matches_by_round.get(round_name)
+
+        if match and not is_time_placeholder(match):
+            # Phase 3: präzises Event
+            events.append(build_event_from_api(match, comp, stadiums))
+        else:
+            if match:
+                # Phase 2: Paarung bekannt, Zeit offen
+                t1 = match.get("team1", {}).get("shortName") or match.get("team1", {}).get("teamName", "?")
+                t2 = match.get("team2", {}).get("shortName") or match.get("team2", {}).get("teamName", "?")
+                summary = f"DFB: {round_name}: {t1} – {t2}"
+                desc = (
+                    f"DFB-Pokal 2026/27\n{round_name}\n"
+                    "Paarung bekannt – Anstoßzeit noch nicht terminiert.\n"
+                    "Wird automatisch aktualisiert sobald die genaue Zeit feststeht."
+                )
+            else:
+                # Phase 1: Runde bekannt, Paarung offen
+                summary = f"DFB: {round_name} (1. FC Köln)"
+                desc = f"DFB-Pokal 2026/27\n{round_name}\nGenaue Terminierung steht noch aus"
+            ph = {
+                "_uid": f"placeholder-dfb-{round_order}",
+                "_matchday": round_order,
+                "_date_start": d_start,
+                "_date_end": d_end,
+                "_label": "DFB",
+                "_summary": summary,
+                "_description": desc,
+            }
+            events.append(build_event_from_placeholder(ph))
+
     return events
 
 
@@ -260,14 +339,15 @@ def build_event_from_api(match, comp_config, stadiums):
 
 
 def build_event_from_placeholder(placeholder):
-    d = placeholder["_date"]
+    d_start = placeholder.get("_date_start") or placeholder.get("_date")
+    d_end = placeholder.get("_date_end") or (d_start + timedelta(days=1))
     mid = placeholder.get("_uid") or f"placeholder-{placeholder['_label'].lower()}-{placeholder['_matchday']}"
 
     event = Event()
     event.add("uid", f"{mid}@fulender.calendar")
     event.add("dtstamp", datetime.now(timezone.utc))
-    event.add("dtstart", d)
-    event.add("dtend", d + timedelta(days=1))
+    event.add("dtstart", d_start)
+    event.add("dtend", d_end)
     event.add("summary", placeholder["_summary"])
     event.add("description", placeholder["_description"])
     event.add("status", "TENTATIVE")
@@ -351,32 +431,31 @@ def main():
         filtered = filter_matches(raw_matches, comp)
         print(f"  API: {len(raw_matches)} Spiele geladen, {len(filtered)} nach Filter")
 
-        if filtered:
+        if ph_type == "bundesliga":
+            events = generate_bundesliga_events(ph_config, filtered, comp, stadiums)
+            api_c = sum(1 for e in events if not str(e.get("uid", "")).startswith("placeholder-"))
+            print(f"  {api_c} Spiele (API) + {len(events) - api_c} Platzhalter/Blocker")
+            for event in events:
+                all_events[str(event.get("uid"))] = event
+
+        elif ph_type == "dfb_pokal":
+            eliminated, last_round = False, 0
+            if comp.get("auto_deactivate"):
+                eliminated, last_round = is_koeln_eliminated(raw_matches)
+                if eliminated:
+                    print(f"  Köln ist in Runde {last_round} ausgeschieden – keine weiteren Platzhalter")
+            events = generate_dfb_events(ph_config, filtered, comp, stadiums, eliminated, last_round)
+            api_c = sum(1 for e in events if not str(e.get("uid", "")).startswith("placeholder-"))
+            print(f"  {api_c} Spiele (API) + {len(events) - api_c} Platzhalter/Blocker")
+            for event in events:
+                all_events[str(event.get("uid"))] = event
+
+        elif filtered:
             for m in filtered:
                 event = build_event_from_api(m, comp, stadiums)
                 uid = str(event.get("uid"))
                 all_events[uid] = event
-        elif ph_config.get("enabled"):
-            if ph_type == "bundesliga":
-                placeholders = generate_bundesliga_placeholders(ph_config)
-                print(f"  Platzhalter: {len(placeholders)} Bundesliga-Spieltage generiert")
-            elif ph_type == "dfb_pokal":
-                if comp.get("auto_deactivate"):
-                    all_dfb = fetch_matches(comp["api_shortcut"], comp["api_season"])
-                    eliminated, last_round = is_koeln_eliminated(all_dfb)
-                    if eliminated:
-                        print(f"  Köln ist in Runde {last_round} ausgeschieden – keine weiteren Platzhalter")
-                else:
-                    eliminated, last_round = False, 0
-                placeholders = generate_dfb_placeholders(ph_config, eliminated, last_round)
-                print(f"  Platzhalter: {len(placeholders)} DFB-Pokal-Runden generiert")
-            else:
-                placeholders = []
 
-            for ph in placeholders:
-                event = build_event_from_placeholder(ph)
-                uid = str(event.get("uid"))
-                all_events[uid] = event
         else:
             print(f"  Keine Daten und keine Platzhalter konfiguriert")
 
