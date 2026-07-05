@@ -160,9 +160,9 @@ def generate_bundesliga_events(ph_config, filtered_matches, comp, stadiums):
             verified = entry.get("verified", False)
             confirmed_dt_str = entry.get("confirmed_datetime")
 
-        # Anchor = Samstag des Spieltags → Blocker-Fenster Fr–Mo (4 Tage)
+        # Anchor = Samstag des Spieltags → Blocker-Fenster Fr–So (3 Tage)
         d_start = anchor - timedelta(days=1)   # Freitag
-        d_end = anchor + timedelta(days=3)     # Dienstag (exklusiv) → zeigt Fr+Sa+So+Mo
+        d_end = anchor + timedelta(days=2)     # Montag (exklusiv) → zeigt Fr+Sa+So
 
         match = matches_by_day.get(matchday_num)
 
