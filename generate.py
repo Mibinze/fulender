@@ -128,6 +128,15 @@ def generate_bundesliga_events(ph_config, filtered_matches, comp, stadiums):
       Phase 1 – kein API-Match: Mehrtages-Blocker Fr–Mo (Teams unbekannt)
       Phase 2 – Teams bekannt, Zeit noch Platzhalter: Mehrtages-Blocker mit Paarung
       Phase 3 – exakte Anstoßzeit bekannt: präzises Event (ersetzt den Blocker)
+
+    Phase-3-Bedingung (analog zu DFB):
+      a) API-Zeit ist nicht Mitternacht UTC
+      b) API-Datum weicht vom Anker-Datum ab – wenn Datum == Anker hat OpenLigaDB
+         das Spielplan-Datum vorläufig eingetragen, TV-Zeiten noch nicht bestätigt
+      c) Alternativ: confirmed_datetime im Config-Eintrag übersteuert API-Datum
+
+    Sobald ein Spiel via TV-Auslosung auf Fr/So/Mo gelegt wird (API-Datum ≠ Anker-Sa),
+    wechselt es automatisch in Phase 3.
     """
     entries = ph_config.get("matchday_dates", [])
 
@@ -144,10 +153,12 @@ def generate_bundesliga_events(ph_config, filtered_matches, comp, stadiums):
             anchor = date.fromisoformat(entry)
             name = f"Spieltag {matchday_num}"
             verified = False
+            confirmed_dt_str = None
         else:
             anchor = date.fromisoformat(entry["date"])
             name = entry.get("name", f"Spieltag {matchday_num}")
             verified = entry.get("verified", False)
+            confirmed_dt_str = entry.get("confirmed_datetime")
 
         # Anchor = Samstag des Spieltags → Blocker-Fenster Fr–Mo (4 Tage)
         d_start = anchor - timedelta(days=1)   # Freitag
@@ -155,9 +166,27 @@ def generate_bundesliga_events(ph_config, filtered_matches, comp, stadiums):
 
         match = matches_by_day.get(matchday_num)
 
-        if match and not is_time_placeholder(match):
-            # Phase 3: exakte Zeit bekannt → präzises Event
-            events.append(build_event_from_api(match, comp, stadiums))
+        # Phase-3-Auswertung (analog zu DFB)
+        use_phase3 = False
+        phase3_match = None
+        if match and confirmed_dt_str:
+            # Config-Override: Teams aus API, Datum aus Config (API-Datum ignorieren)
+            use_phase3 = True
+            phase3_match = {**match, "matchDateTimeUTC": confirmed_dt_str}
+        elif match and not is_time_placeholder(match):
+            # Prüfen ob API-Datum vom Anker-Datum abweicht.
+            # API-Datum == Anker: Spielplan veröffentlicht, TV-Zeiten noch vorläufig → Phase 2
+            # API-Datum ≠ Anker: Spiel auf Fr/So/Mo verlegt (TV bestätigt) → Phase 3
+            try:
+                api_date = parse_utc(match["matchDateTimeUTC"]).date()
+                if api_date != anchor:
+                    use_phase3 = True
+                    phase3_match = match
+            except (ValueError, KeyError):
+                pass  # Malformed date → Phase 2
+
+        if use_phase3:
+            events.append(build_event_from_api(phase3_match, comp, stadiums))
         else:
             if match:
                 # Phase 2: Paarung bekannt, Zeit noch offen
