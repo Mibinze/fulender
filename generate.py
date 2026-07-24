@@ -2,6 +2,7 @@
 import json
 import time
 from datetime import date, datetime, timedelta, timezone
+from datetime import time as time_of_day
 from pathlib import Path
 from urllib.request import Request, urlopen
 from urllib.error import URLError
@@ -122,25 +123,115 @@ def is_time_placeholder(match):
     return not dt_str or dt_str.endswith("T00:00:00Z")
 
 
-def generate_bundesliga_events(ph_config, filtered_matches, comp, stadiums):
+# Rohspielplan-Default der DFL: ein noch nicht TV-terminierter Spieltag steht
+# komplett auf Samstag 15:30 Ortszeit.
+BL_DEFAULT_WEEKDAY = 5          # Samstag
+BL_DEFAULT_KICKOFF = time_of_day(15, 30)
+
+
+def local_kickoff(match):
+    """Anstoßzeit als lokale Berliner Zeit, oder None wenn nicht parsebar."""
+    try:
+        return parse_utc(match["matchDateTimeUTC"]).astimezone(BERLIN)
+    except (ValueError, KeyError, TypeError):
+        return None
+
+
+def classify_bl_matchday(games, anchor, simultaneous=False):
+    """Entscheidet, ob ein Bundesliga-Spieltag TV-terminiert ("fix") ist.
+
+    Rückgabe: (is_scheduled, reason) – reason dient nur dem Log.
+
+    Hintergrund: Die DFL veröffentlicht zuerst den Rohspielplan (Paarungen,
+    alle Spiele nominell Sa 15:30) und terminiert die Anstoßzeiten erst später
+    schubweise. Beide Zustände liefern in der API ein echtes Datum, sind also
+    an einem einzelnen Spiel nicht unterscheidbar. Entschieden wird deshalb
+    über den ganzen Spieltag:
+
+      1. Kein Spiel hat eine Zeit (alle Mitternacht UTC) -> nicht terminiert.
+      2. Nur ein Teil hat Zeiten -> terminiert (Terminierung läuft).
+      3. Alle Zeiten identisch -> Rohspielplan-Default -> nicht terminiert.
+         Ausnahme: simultaneous=True (letzter Spieltag, planmäßig zeitgleich).
+      4. Zeiten unterscheiden sich -> terminiert (DFL hat aufgefächert).
+
+    Sonderfall Einzelspiel (kein Spieltagskontext, z.B. wenn nur das Köln-Spiel
+    vorliegt): Dann greift die Slot-Heuristik – exakt Anker-Samstag 15:30 gilt
+    als Default, alles andere als terminiert.
+    """
+    if not games:
+        return False, "keine Spiele"
+
+    timed = [g for g in games if not is_time_placeholder(g)]
+    if not timed:
+        return False, "keine Anstoßzeiten"
+    if len(timed) < len(games):
+        return True, f"teilweise terminiert ({len(timed)}/{len(games)})"
+
+    kickoffs = {g.get("matchDateTimeUTC") for g in timed}
+    if len(kickoffs) > 1:
+        return True, f"{len(kickoffs)} verschiedene Anstoßzeiten"
+
+    if simultaneous:
+        return True, "planmaessig zeitgleicher Spieltag (Config)"
+
+    if len(timed) == 1:
+        # Kein Spieltagskontext -> Slot-Heuristik auf dem Einzelspiel.
+        dt = local_kickoff(timed[0])
+        if dt is None:
+            return False, "Zeit nicht parsebar"
+        is_default_slot = (
+            dt.date() == anchor
+            and dt.weekday() == BL_DEFAULT_WEEKDAY
+            and dt.time() == BL_DEFAULT_KICKOFF
+        )
+        if is_default_slot:
+            return False, "Einzelspiel im Default-Slot (Sa 15:30)"
+        return True, "Einzelspiel ausserhalb Default-Slot"
+
+    return False, f"alle {len(timed)} Spiele zeitgleich (Rohspielplan-Default)"
+
+
+def bl_blocker_window(anchor, entry):
+    """Blocker-Fenster (start, end_exklusiv) fuer einen nicht terminierten Spieltag.
+
+    Wochenend-Spieltag (Sa-Anker): Fr-So. Englische Woche (Di-/Mi-Anker): Di-Do.
+    Ueber window_start_offset / window_days pro Config-Eintrag uebersteuerbar.
+    """
+    weekday = anchor.weekday()
+    if weekday in (1, 2):          # Dienstag / Mittwoch -> Englische Woche
+        offset, days = (0 if weekday == 1 else -1), 3
+    else:                          # Samstag (Regelfall) -> Fr-So
+        offset, days = -1, 3
+
+    offset = entry.get("window_start_offset", offset) if isinstance(entry, dict) else offset
+    days = entry.get("window_days", days) if isinstance(entry, dict) else days
+
+    start = anchor + timedelta(days=offset)
+    return start, start + timedelta(days=days)
+
+
+def generate_bundesliga_events(ph_config, filtered_matches, comp, stadiums, all_matches=None):
     """
     3-Phasen-Logik pro Spieltag:
       Phase 1 – kein API-Match: Mehrtages-Blocker Fr–Mo (Teams unbekannt)
       Phase 2 – Teams bekannt, Zeit noch Platzhalter: Mehrtages-Blocker mit Paarung
       Phase 3 – exakte Anstoßzeit bekannt: präzises Event (ersetzt den Blocker)
 
-    Phase-3-Bedingung:
-      a) API-Zeit ist nicht Mitternacht UTC (= OpenLigaDB hat eine echte
-         Anstoßzeit → das Spiel ist terminiert), ODER
-      b) confirmed_datetime im Config-Eintrag übersteuert die API-Zeit.
+    Phase-3-Bedingung (eine muss gelten):
+      a) confirmed_datetime im Config-Eintrag übersteuert die API-Zeit, ODER
+      b) das Köln-Spiel hat eine echte Anstoßzeit (nicht Mitternacht UTC) UND
+         der Spieltag gilt laut classify_bl_matchday() als TV-terminiert.
 
-    Anders als beim DFB-Pokal wird hier KEIN Datumsvergleich mit dem Anker
-    verwendet: Das Anker-Datum ist der tatsächlich erwartete Spiel-Samstag,
-    nicht ein bewusst versetzter Platzhalter. Ein Spiel, das offiziell auf
-    genau diesen Samstag terminiert wird, hätte api_date == anchor und würde
-    bei einem Datumsvergleich fälschlich als Blocker hängenbleiben. Sobald
-    OpenLigaDB eine echte Anstoßzeit liefert (egal an welchem Wochentag),
-    wechselt der Spieltag daher in Phase 3.
+    Die Unterscheidung "fix vs. noch nicht fix" trifft classify_bl_matchday()
+    über den gesamten Spieltag (Details dort). Ein einzelnes Spiel reicht dafür
+    nicht aus: Rohspielplan und fertige Terminierung liefern beide ein echtes
+    Datum und sind erst im Vergleich aller Anstoßzeiten unterscheidbar.
+
+    Nicht terminierte Spieltage werden zum Mehrtages-Blocker über die möglichen
+    Spieltage (bl_blocker_window: Fr–So, bzw. Di–Do in Englischen Wochen).
+
+    all_matches: alle BL-Spiele (nicht nur Köln), um die Auffächerung eines
+    Spieltags zu beurteilen. Fällt auf filtered_matches zurück.
     """
     entries = ph_config.get("matchday_dates", [])
 
@@ -150,6 +241,13 @@ def generate_bundesliga_events(ph_config, filtered_matches, comp, stadiums):
         if md is not None:
             matches_by_day[md] = m
 
+    # Alle Spiele pro Spieltag gruppieren (für die Auffächerungs-Prüfung)
+    games_by_day = {}
+    for m in (all_matches if all_matches is not None else filtered_matches):
+        md = m.get("group", {}).get("groupOrderID")
+        if md is not None:
+            games_by_day.setdefault(md, []).append(m)
+
     events = []
     for i, entry in enumerate(entries):
         matchday_num = i + 1
@@ -158,15 +256,16 @@ def generate_bundesliga_events(ph_config, filtered_matches, comp, stadiums):
             name = f"Spieltag {matchday_num}"
             verified = False
             confirmed_dt_str = None
+            simultaneous = False
         else:
             anchor = date.fromisoformat(entry["date"])
             name = entry.get("name", f"Spieltag {matchday_num}")
             verified = entry.get("verified", False)
             confirmed_dt_str = entry.get("confirmed_datetime")
+            simultaneous = entry.get("simultaneous", False)
 
-        # Anchor = Samstag des Spieltags → Blocker-Fenster Fr–So (3 Tage)
-        d_start = anchor - timedelta(days=1)   # Freitag
-        d_end = anchor + timedelta(days=2)     # Montag (exklusiv) → zeigt Fr+Sa+So
+        # Blocker-Fenster über die möglichen Spieltage (Fr–So bzw. Di–Do)
+        d_start, d_end = bl_blocker_window(anchor, entry)
 
         match = matches_by_day.get(matchday_num)
 
@@ -178,11 +277,16 @@ def generate_bundesliga_events(ph_config, filtered_matches, comp, stadiums):
             use_phase3 = True
             phase3_match = {**match, "matchDateTimeUTC": confirmed_dt_str}
         elif match and not is_time_placeholder(match):
-            # OpenLigaDB liefert eine echte Anstoßzeit → Spiel ist terminiert.
-            # Kein Datumsvergleich mit dem Anker (siehe Docstring): ein auf den
-            # Anker-Samstag terminiertes Spiel bliebe sonst fälschlich Blocker.
-            use_phase3 = True
-            phase3_match = match
+            # Köln-Spiel hat echte Zeit – aber nur wenn der ganze Spieltag
+            # terminiert ist, ist der Termin wirklich fix.
+            scheduled, reason = classify_bl_matchday(
+                games_by_day.get(matchday_num, [match]), anchor, simultaneous
+            )
+            if scheduled:
+                use_phase3 = True
+                phase3_match = match
+            else:
+                print(f"  {name}: bleibt Blocker – {reason}")
 
         if use_phase3:
             events.append(build_event_from_api(phase3_match, comp, stadiums))
@@ -487,7 +591,7 @@ def main():
         print(f"  API: {len(raw_matches)} Spiele geladen, {len(filtered)} nach Filter")
 
         if ph_type == "bundesliga":
-            events = generate_bundesliga_events(ph_config, filtered, comp, stadiums)
+            events = generate_bundesliga_events(ph_config, filtered, comp, stadiums, raw_matches)
             api_c = sum(1 for e in events if not str(e.get("uid", "")).startswith("placeholder-"))
             print(f"  {api_c} Spiele (API) + {len(events) - api_c} Platzhalter/Blocker")
             for event in events:
