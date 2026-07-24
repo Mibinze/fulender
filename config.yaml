@@ -118,6 +118,9 @@ competitions:
         - date: "2027-05-22"
           name: "Spieltag 34"
           verified: true    # DFL: 22.05.2027 (letzter Spieltag)
+          # Letzter Spieltag: alle Spiele planmäßig zeitgleich. Ohne dieses Flag
+          # sähe das wie der uniforme Rohspielplan-Default aus und bliebe Blocker.
+          simultaneous: true
 
   - id: dfb_2026
     label: "DFB"
