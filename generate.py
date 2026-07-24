@@ -129,14 +129,18 @@ def generate_bundesliga_events(ph_config, filtered_matches, comp, stadiums):
       Phase 2 – Teams bekannt, Zeit noch Platzhalter: Mehrtages-Blocker mit Paarung
       Phase 3 – exakte Anstoßzeit bekannt: präzises Event (ersetzt den Blocker)
 
-    Phase-3-Bedingung (analog zu DFB):
-      a) API-Zeit ist nicht Mitternacht UTC
-      b) API-Datum weicht vom Anker-Datum ab – wenn Datum == Anker hat OpenLigaDB
-         das Spielplan-Datum vorläufig eingetragen, TV-Zeiten noch nicht bestätigt
-      c) Alternativ: confirmed_datetime im Config-Eintrag übersteuert API-Datum
+    Phase-3-Bedingung:
+      a) API-Zeit ist nicht Mitternacht UTC (= OpenLigaDB hat eine echte
+         Anstoßzeit → das Spiel ist terminiert), ODER
+      b) confirmed_datetime im Config-Eintrag übersteuert die API-Zeit.
 
-    Sobald ein Spiel via TV-Auslosung auf Fr/So/Mo gelegt wird (API-Datum ≠ Anker-Sa),
-    wechselt es automatisch in Phase 3.
+    Anders als beim DFB-Pokal wird hier KEIN Datumsvergleich mit dem Anker
+    verwendet: Das Anker-Datum ist der tatsächlich erwartete Spiel-Samstag,
+    nicht ein bewusst versetzter Platzhalter. Ein Spiel, das offiziell auf
+    genau diesen Samstag terminiert wird, hätte api_date == anchor und würde
+    bei einem Datumsvergleich fälschlich als Blocker hängenbleiben. Sobald
+    OpenLigaDB eine echte Anstoßzeit liefert (egal an welchem Wochentag),
+    wechselt der Spieltag daher in Phase 3.
     """
     entries = ph_config.get("matchday_dates", [])
 
@@ -166,7 +170,7 @@ def generate_bundesliga_events(ph_config, filtered_matches, comp, stadiums):
 
         match = matches_by_day.get(matchday_num)
 
-        # Phase-3-Auswertung (analog zu DFB)
+        # Phase-3-Auswertung
         use_phase3 = False
         phase3_match = None
         if match and confirmed_dt_str:
@@ -174,16 +178,11 @@ def generate_bundesliga_events(ph_config, filtered_matches, comp, stadiums):
             use_phase3 = True
             phase3_match = {**match, "matchDateTimeUTC": confirmed_dt_str}
         elif match and not is_time_placeholder(match):
-            # Prüfen ob API-Datum vom Anker-Datum abweicht.
-            # API-Datum == Anker: Spielplan veröffentlicht, TV-Zeiten noch vorläufig → Phase 2
-            # API-Datum ≠ Anker: Spiel auf Fr/So/Mo verlegt (TV bestätigt) → Phase 3
-            try:
-                api_date = parse_utc(match["matchDateTimeUTC"]).date()
-                if api_date != anchor:
-                    use_phase3 = True
-                    phase3_match = match
-            except (ValueError, KeyError):
-                pass  # Malformed date → Phase 2
+            # OpenLigaDB liefert eine echte Anstoßzeit → Spiel ist terminiert.
+            # Kein Datumsvergleich mit dem Anker (siehe Docstring): ein auf den
+            # Anker-Samstag terminiertes Spiel bliebe sonst fälschlich Blocker.
+            use_phase3 = True
+            phase3_match = match
 
         if use_phase3:
             events.append(build_event_from_api(phase3_match, comp, stadiums))
