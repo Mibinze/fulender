@@ -191,6 +191,43 @@ def classify_bl_matchday(games, anchor, simultaneous=False):
     return False, f"alle {len(timed)} Spiele zeitgleich (Rohspielplan-Default)"
 
 
+def classify_dfb_round(games):
+    """Entscheidet, ob eine DFB-Pokal-Runde terminiert ist ("fix").
+
+    Rückgabe: (is_scheduled, reason) – reason dient nur dem Log.
+
+    Wie in der Bundesliga stehen die Spiele einer Runde vor der Terminierung
+    durch den DFB alle auf demselben Default-Termin. Ein einzelnes Spiel ist
+    daran nicht erkennbar – insbesondere nicht am Datum, denn das echte Spiel
+    liegt oft genau am ersten Tag des Rundenfensters. Entschieden wird über
+    die ganze Runde:
+
+      1. Kein Spiel hat eine Zeit (alle Mitternacht UTC) -> nicht terminiert.
+      2. Nur ein Teil hat Zeiten -> terminiert (Terminierung läuft).
+      3. Mehrere Spiele, alle Zeiten identisch -> Default -> nicht terminiert.
+      4. Zeiten unterscheiden sich -> terminiert.
+
+    Einzelspiel (z.B. Finale, oder nur das Köln-Spiel liegt vor): Eine echte
+    Zeit gilt als terminiert.
+    """
+    if not games:
+        return False, "keine Spiele"
+
+    timed = [g for g in games if not is_time_placeholder(g)]
+    if not timed:
+        return False, "keine Anstoßzeiten"
+    if len(timed) < len(games):
+        return True, f"teilweise terminiert ({len(timed)}/{len(games)})"
+
+    kickoffs = {g.get("matchDateTimeUTC") for g in timed}
+    if len(kickoffs) > 1:
+        return True, f"{len(kickoffs)} verschiedene Anstoßzeiten"
+    if len(timed) == 1:
+        return True, "Einzelspiel mit Anstoßzeit"
+
+    return False, f"alle {len(timed)} Spiele zeitgleich (Default vor Terminierung)"
+
+
 def bl_blocker_window(anchor, entry):
     """Blocker-Fenster (start, end_exklusiv) fuer einen nicht terminierten Spieltag.
 
@@ -327,28 +364,36 @@ def generate_bundesliga_events(ph_config, filtered_matches, comp, stadiums, all_
     return events
 
 
-def generate_dfb_events(ph_config, filtered_matches, comp, stadiums, eliminated, last_round):
+def generate_dfb_events(ph_config, filtered_matches, comp, stadiums, eliminated, last_round,
+                        all_matches=None):
     """
     3-Phasen-Logik pro DFB-Runde:
       Phase 1 – kein API-Match: Mehrtages-Blocker (Teams unbekannt)
-      Phase 2 – Paarung bekannt, Zeit ist Platzhalter: Blocker mit Paarung
+      Phase 2 – Paarung bekannt, Zeit noch nicht terminiert: Blocker mit Paarung
       Phase 3 – exakte Anstoßzeit bestätigt: präzises Event
 
-    Phase-3-Bedingung (UND-Verknüpfung, alle müssen gelten):
-      a) API-Zeit ist nicht Mitternacht UTC
-      b) API-Datum weicht vom Konfig-Platzhalterdatum ab (sonst hat OpenLigaDB
-         vermutlich das Rundendatum als provisorische Zeit eingetragen)
-      c) Kein confirmed_datetime im Config (das übersteuert dann API-Datum)
+    Phase-3-Bedingung (eine muss gelten):
+      a) confirmed_datetime im Config-Eintrag übersteuert die API-Zeit, ODER
+      b) das Köln-Spiel ist beendet (dann ist die API-Zeit die tatsächliche), ODER
+      c) das Köln-Spiel hat eine echte Anstoßzeit (nicht Mitternacht UTC) UND
+         die Runde gilt laut classify_dfb_round() als terminiert.
 
     confirmed_datetime im Config: Wenn das echte Datum bekannt ist, aber die API
-    noch falsches Datum liefert, kann hier die korrekte UTC-Zeit eingetragen werden.
-    Sobald die API das korrekte Datum liefert (≠ Konfig-Platzhalterdatum), kann
-    confirmed_datetime wieder entfernt werden.
+    ein falsches liefert, kann hier die korrekte UTC-Zeit eingetragen werden.
+
+    all_matches: alle DFB-Spiele (nicht nur Köln), um die Auffächerung einer
+    Runde zu beurteilen. Fällt auf filtered_matches zurück.
     """
     matches_by_round = {}
     for m in filtered_matches:
         gname = m.get("group", {}).get("groupName", "")
         matches_by_round[gname] = m
+
+    # Alle Spiele pro Runde gruppieren (für die Auffächerungs-Prüfung)
+    games_by_round = {}
+    for m in (all_matches if all_matches is not None else filtered_matches):
+        gname = m.get("group", {}).get("groupName", "")
+        games_by_round.setdefault(gname, []).append(m)
 
     events = []
     for round_order, r in enumerate(ph_config["rounds"], start=1):
@@ -371,15 +416,20 @@ def generate_dfb_events(ph_config, filtered_matches, comp, stadiums, eliminated,
             # Config-Override: Teams aus API, Datum aus Config (API-Datum ignorieren)
             use_phase3 = True
             phase3_match = {**match, "matchDateTimeUTC": confirmed_dt_str}
+        elif match and local_kickoff(match) is None:
+            pass  # Datum fehlt oder nicht parsebar → Phase 2
+        elif match and match.get("matchIsFinished"):
+            use_phase3 = True
+            phase3_match = match
         elif match and not is_time_placeholder(match):
-            # Prüfen ob API-Datum vom Konfig-Platzhalter abweicht
-            try:
-                api_date = parse_utc(match["matchDateTimeUTC"]).date()
-                if api_date != round_date:
-                    use_phase3 = True
-                    phase3_match = match
-            except (ValueError, KeyError):
-                pass  # Malformed date → Phase 2
+            # Köln-Spiel hat echte Zeit – aber nur wenn die ganze Runde
+            # terminiert ist, ist der Termin wirklich fix.
+            scheduled, reason = classify_dfb_round(games_by_round.get(round_name, [match]))
+            if scheduled:
+                use_phase3 = True
+                phase3_match = match
+            else:
+                print(f"  {round_name}: bleibt Blocker – {reason}")
 
         if use_phase3:
             events.append(build_event_from_api(phase3_match, comp, stadiums))
@@ -603,7 +653,8 @@ def main():
                 eliminated, last_round = is_koeln_eliminated(raw_matches)
                 if eliminated:
                     print(f"  Köln ist in Runde {last_round} ausgeschieden – keine weiteren Platzhalter")
-            events = generate_dfb_events(ph_config, filtered, comp, stadiums, eliminated, last_round)
+            events = generate_dfb_events(ph_config, filtered, comp, stadiums, eliminated, last_round,
+                                         raw_matches)
             api_c = sum(1 for e in events if not str(e.get("uid", "")).startswith("placeholder-"))
             print(f"  {api_c} Spiele (API) + {len(events) - api_c} Platzhalter/Blocker")
             for event in events:
