@@ -8,7 +8,9 @@ from datetime import date
 from generate import (
     bl_blocker_window,
     classify_bl_matchday,
+    classify_dfb_round,
     generate_bundesliga_events,
+    generate_dfb_events,
 )
 
 COMP = {"label": "BL", "description": "1. Bundesliga 2026/27", "id": "bl1_2026"}
@@ -180,6 +182,62 @@ raw_last = matchday(1, "2027-05-22T13:30:00Z", ["2027-05-22T13:30:00Z"] * 8)
 filtered_last = [m for m in raw_last if KOELN in (m["team1"]["teamName"], m["team2"]["teamName"])]
 ev_last = generate_bundesliga_events(ph_last, filtered_last, COMP, STADIUMS, raw_last)
 check("letzter Spieltag (simultaneous) -> praeziser Termin", not is_blocker(ev_last[0]))
+
+# --------------------------------------------------------------------------
+# DFB-Pokal
+# --------------------------------------------------------------------------
+print("\nclassify_dfb_round / generate_dfb_events:")
+DFB_COMP = {"label": "DFB", "description": "DFB-Pokal 2026/27", "id": "dfb_2026"}
+
+
+def pokal_game(round_name, dt_utc, t1, t2, finished=False):
+    g = game(0, dt_utc, t1, t2)
+    g["group"] = {"groupOrderID": 2, "groupName": round_name}
+    g["matchIsFinished"] = finished
+    return g
+
+
+def pokal_round(koeln_time, other_times, finished=False):
+    games = [pokal_game("2. Runde", koeln_time, KOELN, "1. FC Union Berlin", finished)]
+    for (t1, t2), t in zip(OTHERS, other_times):
+        games.append(pokal_game("2. Runde", t, t1, t2))
+    return games
+
+
+# Terminiert über Di/Mi, Köln am Di 27.10. = Platzhalterdatum (Regression)
+DFB_SPREAD = ["2026-10-27T17:00:00Z"] * 4 + ["2026-10-28T17:00:00Z"] * 3 + ["2026-10-28T19:45:00Z"]
+check("DFB: aufgefaechert -> terminiert",
+      classify_dfb_round(pokal_round("2026-10-27T19:45:00Z", DFB_SPREAD))[0] is True)
+check("DFB: alle zeitgleich -> NICHT terminiert",
+      classify_dfb_round(pokal_round("2026-10-27T17:00:00Z", ["2026-10-27T17:00:00Z"] * 8))[0] is False)
+check("DFB: keine Zeiten -> NICHT terminiert",
+      classify_dfb_round(pokal_round("2026-10-27T00:00:00Z", ["2026-10-27T00:00:00Z"] * 8))[0] is False)
+check("DFB: Einzelspiel (Finale) mit Zeit -> terminiert",
+      classify_dfb_round([pokal_game("Finale", "2027-05-29T18:00:00Z", KOELN, "FC Bayern München")])[0] is True)
+
+dfb_ph = {"rounds": [{"name": "1. Runde", "date": "2026-08-21"},
+                     {"name": "2. Runde", "date": "2026-10-27"}]}
+
+
+def dfb_events(raw):
+    flt = [m for m in raw if KOELN in (m["team1"]["teamName"], m["team2"]["teamName"])]
+    return generate_dfb_events(dfb_ph, flt, DFB_COMP, STADIUMS, False, 0, raw)
+
+
+ev = dfb_events(pokal_round("2026-10-27T19:45:00Z", DFB_SPREAD))
+check("DFB: Spiel am Platzhalterdatum -> praeziser Termin", not is_blocker(ev[1]))
+check("DFB: Startzeit = Di 20:45 Ortszeit", str(ev[1].get("dtstart").dt) == "2026-10-27 20:45:00+01:00")
+
+ev = dfb_events(pokal_round("2026-10-27T17:00:00Z", ["2026-10-27T17:00:00Z"] * 8))
+check("DFB: Default-Termin -> Blocker mit Paarung",
+      is_blocker(ev[1]) and "Union" in str(ev[1].get("summary")))
+
+ev = dfb_events(pokal_round("2026-10-27T17:00:00Z", ["2026-10-27T17:00:00Z"] * 8, finished=True))
+check("DFB: beendetes Spiel -> praeziser Termin", not is_blocker(ev[1]))
+
+ev = dfb_events([pokal_game("2. Runde", "2026-10-28T18:45:00Z", KOELN, "1. FC Union Berlin")])
+check("DFB: nur Koeln-Spiel bekannt, mit Zeit -> praeziser Termin", not is_blocker(ev[1]))
+check("DFB: 1. Runde ohne API-Spiel -> Blocker", is_blocker(ev[0]))
 
 # --------------------------------------------------------------------------
 failed = [n for n, ok in checks if not ok]
